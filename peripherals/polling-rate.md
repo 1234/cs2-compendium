@@ -150,14 +150,29 @@ At 8000 Hz with a 360 Hz monitor, it drops to ~0.04 ms.
 
 That improvement is real. It is also below human perception threshold under any testing condition.
 
-### Blind tests
+### What the research actually shows
 
-Controlled blind tests — where players can't see what polling rate they're using —
-show the following:
+The only peer-reviewed study on polling rate perception is *"Do We Need a Faster Mouse?
+Empirical Evaluation of Asynchronicity-Induced Jitter"* (ACM CHI 2021).
 
-- 125 Hz vs. 1000 Hz: Players can reliably distinguish these. The improvement is real and felt.
-- 1000 Hz vs. 4000 Hz: Most players cannot reliably distinguish these in blind conditions.
-- 4000 Hz vs. 8000 Hz: No tested population has shown statistically reliable discrimination.
+Its findings:
+- Perceptual threshold for polling rate sits at approximately **2000 Hz** — below that, users can detect the difference; above it, the evidence disappears
+- Sample size: 23 participants for the triangle test, 13 for the Fitts' law test
+- Participants were not professional gamers — the study examined general mouse performance, not competitive aim
+
+What this means: the study provides a theoretical foundation for why going above 2000 Hz likely
+doesn't help, but it is not a gaming study and it did not test 4000 Hz vs. 8000 Hz specifically.
+
+Rigorous blind tests specifically comparing 4000 Hz and 8000 Hz **in competitive FPS play do not
+exist in the published literature.** The widely repeated claim that "85-90% of players can't
+distinguish 4K from 8K" is not backed by any identifiable study — it is an assumption derived
+from the perception threshold reasoning above, not measured data.
+
+The principle is sound. The specific number is not documented.
+
+On the qualitative end: 125 Hz vs. 1000 Hz is reliably distinguishable by nearly anyone.
+1000 Hz vs. 4000 Hz: anecdotally reported as imperceptible by most players in informal tests.
+4000 Hz vs. 8000 Hz: no credible test methodology has produced evidence of reliable discrimination.
 
 ### What the margin actually represents
 
@@ -174,10 +189,20 @@ has 15+ ms of server-side latency. It doesn't disappear — it's just structural
 
 ### Pro usage
 
-As of 2025, the overwhelming majority of CS2 professionals use 1000 Hz.
-A small number — estimated under 5% — use 4000 Hz.
-8000 Hz is essentially absent in professional CS2, not because pros are uninformed,
-but because the stability risks aren't worth the unmeasurable gain.
+Based on ProSettings data tracking 889 CS2 professionals (April 2026):
+
+- **1000 Hz** remains the most common single setting, but its dominance is eroding
+- **~32% of tracked pros** now use polling rates above 1000 Hz (4000 Hz or higher)
+- **Named players confirmed at 4000 Hz:** NAF (Team Liquid), ultimate (Team Liquid)
+- **EliGE** runs 2000 Hz
+- **8000 Hz** is present but not widely documented at pro level — the Razer Viper V3 Pro (which supports 8000 Hz wireless) is among the most popular mice in professional CS2 and Valorant, but most pros running it are not confirmed to use it at maximum polling rate
+
+The shift from near-universal 1000 Hz (the situation in 2024) to ~32% higher-rate adoption
+in April 2026 is significant. Whether this reflects real performance gains or equipment cycling
+(new high-polling mice becoming standard) is not established.
+
+What is clear: the claim that "8000 Hz is essentially absent" is no longer accurate.
+The claim that "pros use it because it helps" is also not established.
 
 ---
 
@@ -211,6 +236,22 @@ and Windows' interrupt coalescing all reduce the effective rate.
 CS2 updates in 2024 caused documented cases of erratic mouse behavior — pointer racing,
 inconsistent sensitivity — specifically at 8000 Hz. Rolling back to 1000 Hz resolved
 the issue consistently. The root cause was never officially acknowledged by Valve.
+
+### ANIMGRAPH 2 (April 2026)
+
+The ANIMGRAPH 2 update shipped April 21, 2026 and replaced CS2's animation system entirely —
+new node-based architecture, all third-person animations re-authored from scratch.
+
+Direct polling rate impact: none. The input processing pipeline was not changed.
+
+Indirect relevance: ANIMGRAPH 2 reduced CPU load significantly, particularly on mid-range hardware.
+Measured improvements:
+- 1% low FPS: ~256 → ~324 FPS on Dust2/Ancient (roughly +26%)
+- CPU overhead: up to 12% reduction on mid-range CPUs
+
+Less CPU pressure on the game thread means more headroom for USB interrupt handling.
+On systems that were previously borderline for 4000 Hz, ANIMGRAPH 2 may tip the balance.
+This does not change the SDL lock contention issue, which is independent of CPU load.
 
 ---
 
@@ -277,7 +318,7 @@ actual operating conditions.
 | Marketing claim | Reality |
 |---|---|
 | "0.125 ms latency at 8000 Hz" | Average is 0.0625 ms; human threshold is ~1–2 ms |
-| "Noticeable improvement over 1000 Hz" | Blind tests: 85–90% of players can't distinguish 4K from 8K |
+| "Noticeable improvement over 1000 Hz" | No rigorous gaming blind test has demonstrated reliable perception above 2000 Hz (ACM 2021, n=23, non-gamers) |
 | "Improved aim and spray control" | No measurement methodology has shown statistically significant improvement |
 | "Runs at 8000 Hz" | Razer Viper 8KHz achieves 3600–5000 Hz in practice on Windows |
 | "Minimal CPU impact" | 5–7% total, concentrated on one core — 30–50% single-core impact |
@@ -292,15 +333,24 @@ Polling rate is following the same arc. The numbers go up. The playable benefit 
 
 ```
 240 Hz monitor + consistent 240+ FPS + modern CPU?
-  → 4000 Hz. Captures most of the theoretical gain, none of the CS2-specific problems.
+  → 4000 Hz. Captures most of the theoretical gain, avoids the worst CS2-specific problems.
 
 Anything else?
-  → 1000 Hz. It is the professional standard, the stable choice, and
-    the right answer for the overwhelming majority of setups.
+  → 1000 Hz. Stable, proven, and the right answer for the majority of setups.
 
 8000 Hz in CS2?
-  → No. SDL lock contention alone disqualifies it until Valve addresses the input handler.
+  → Proceed with caution. SDL lock contention is a real and documented issue.
+    If you're running a Viper V3 Pro or similar 8K-capable mouse, test at 4000 Hz first.
+    Only move to 8000 Hz if you can verify — with LatencyMon and frame time data —
+    that your specific system handles it cleanly.
 ```
+
+~32% of tracked CS2 professionals now use above 1000 Hz (April 2026). That's a real shift.
+It doesn't tell us why — whether the benefit is genuine at that level, or whether it's simply
+that new flagship mice default to higher rates and most pros don't configure them down.
+
+What the data does not show: any improvement in measurable aim performance.
+What the data does show: elite players are using it without visible disadvantage.
 
 Higher polling rate does not fix crosshair placement.
 It does not fix spray control.
@@ -308,6 +358,17 @@ It does not compensate for 30 ms of server latency.
 
 At 1000 Hz, polling is already the smallest source of latency in your system.
 The rest of the compendium covers the parts that actually move the needle.
+
+---
+
+## Sources
+
+- ProSettings.net — CS2 mouse settings, 889 tracked professionals (April 2026)
+- Camacho, D. et al. — *"Do We Need a Faster Mouse? Empirical Evaluation of Asynchronicity-Induced Jitter"*, ACM CHI 2021 — [dl.acm.org](https://dl.acm.org/doi/10.1145/3472749.3474783)
+- SDL GitHub issue #8756 — GetRawInputData lock contention at high polling rates — [github.com/libsdl-org/SDL](https://github.com/libsdl-org/SDL/issues/8756)
+- HLTV.org — *"AnimGraph2 goes live in latest CS2 update"*, April 2026
+- Blur Busters — Mouse and display latency guides — [blurbusters.com](https://blurbusters.com)
+- Rocket Jump Ninja — Polling rate analysis threads (X/Twitter, 2024)
 
 ---
 
