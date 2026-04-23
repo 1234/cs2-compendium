@@ -88,6 +88,7 @@ but have zero effect on CS2. Full peripheral deep-dives coming.
 The foundation sections exist. These are next.
 
 ### Setup & Configuration
+
 | Section | What it covers |
 |---|---|
 | **Crosshair** | What the parameters do, pro crosshair breakdowns, dynamic vs static |
@@ -100,6 +101,7 @@ The foundation sections exist. These are next.
 | **Faceit setup** | Anti-cheat install, client settings, why it feels different from Premier |
 
 ### Game Mechanics
+
 | Section | What it covers |
 |---|---|
 | **Recoil & spray control** | Spray patterns per weapon, when to tap vs burst vs spray by range |
@@ -113,6 +115,7 @@ The foundation sections exist. These are next.
 | **Sub-tick system** | What it actually means, how it differs from 64/128-tick |
 
 ### Tactics & Game Sense
+
 | Section | What it covers |
 |---|---|
 | **Crosshair placement** | Highest ROI skill in CS2 — pre-aiming, height, angles, what separates Silver from Global |
@@ -125,6 +128,7 @@ The foundation sections exist. These are next.
 | **Economy** | Full buy vs force vs eco, when to save, pistol round meta |
 
 ### Communication & Tools
+
 | Section | What it covers |
 |---|---|
 | **Communication** | What info is worth saying, callout language, how pro comms differ from ranked |
@@ -136,6 +140,7 @@ The foundation sections exist. These are next.
 | **Ranking systems** | How Premier and Faceit ELO actually work, what separates each level mechanically |
 
 ### Mental & Physical
+
 | Section | What it covers |
 |---|---|
 | **Mental performance** | Tilt, session limits, variance vs mistakes, when to stop |
