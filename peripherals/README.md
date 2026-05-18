@@ -5,7 +5,8 @@
 
 Topics planned for this section:
 
-- Mouse — sensor, shape, weight, grip styles (palm/claw/fingertip)
+- Mouse — sensor, shape, weight
+- [Mouse grip](mouse-grip.md) — palm/claw/fingertip, the hover hybrid, mouse-shape interaction
 - Wireless vs wired — the 2025 verdict
 - [Polling rate](polling-rate.md) — what it actually does and when it matters in CS2
 - Hardware debounce — what it is, how to adjust it
@@ -57,7 +58,7 @@ who shares it explains how raw input actually works.
 | **CS2 sub-tick system** | CS2 registers inputs between ticks, not only at tick boundaries. This means click timing is more precise than 64-tick CSGO, but depends on how the engine processes the input at the moment it arrives | No user configuration — understanding it helps set expectations |
 | **USB port / connection** | A polling rate of 1000Hz requires a USB port that can handle it reliably. USB 2.0 is fine for 1000Hz. For 2000Hz+ mice, use USB 3.0 directly on the motherboard | Physical connection |
 
-The [polling rate deep-dive](polling-rate.md) is complete. Full deep-dives into the others coming in this section.
+The [polling rate](polling-rate.md) and [mouse grip](mouse-grip.md) deep-dives are complete. Full deep-dives into the others coming in this section.
 
 ---
 
