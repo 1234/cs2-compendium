@@ -17,20 +17,26 @@ Three parts: **Video settings**, **Launch options**, **autoexec.cfg**.
 | **Display Mode** | Fullscreen | Exclusive fullscreen = lowest input latency. Fullscreen Windowed lets Windows interfere. |
 | **Refresh Rate** | Max your monitor supports | Always set to max. There is no reason to cap it here. |
 | **Brightness** | 100–110% | No performance impact. Set to where enemy models are clearest against backgrounds. |
-| **Color Mode** | Computer Monitor or Television | Personal preference — see note below. |
+| **Color Mode** | (removed from Video menu — see note below) | Valve removed the dropdown in a 2025/2026 patch. The underlying console var `mat_monitorgamma` still works. |
 | **Laptop Power Savings** | Disabled | Throttles GPU performance. Off even on a laptop. |
 
-**Color Mode — Computer Monitor vs. Television:**
+**Color Mode — what happened to the dropdown:**
 
-The two modes apply different gamma curves. *Computer Monitor* preserves the reference
-curve your display is calibrated for. *Television* lifts blacks and brightens midtones,
-which makes dark areas — Mirage apartments, Inferno banana, Nuke outside — easier to
-read. Some players deliberately use Television mode for that shadow visibility, accepting
-the slightly washed look as a tradeoff. Others find it kills contrast and prefer
-Computer Monitor.
+Valve removed the *Color Mode* dropdown from the Video menu in a 2025/2026 patch.
+The underlying engine var `mat_monitorgamma` still works from the console — it sets
+the gamma exponent the renderer targets:
 
-Neither is objectively wrong. Try both for a few matches. Whichever makes enemies
-easier for *you* to see in dark corners is the correct choice — it's purely personal.
+- `mat_monitorgamma 2.2` — default. Reference gamma, calibrated contrast.
+- `mat_monitorgamma 1.6` — lifts blacks, brightens midtones. The look the old
+  *Television* dropdown used to produce. Makes dark areas (Mirage apartments,
+  Inferno banana, Nuke outside) easier to read at the cost of washed-out blacks.
+
+Set it from the console or in your autoexec. Neither value is objectively wrong;
+it's a contrast-vs-shadow-visibility tradeoff. Try both for a few matches.
+
+If you prefer a less invasive tweak: bump in-game *Brightness* to 110% and raise
+NVIDIA App → Display → Color → Digital Vibrance to 75 — that gets you most of the
+visibility lift without crushing the gamma curve.
 
 ---
 
@@ -68,7 +74,7 @@ GPU frametime, not just average FPS.
 | **Texture Filtering Mode** | Anisotropic 16× | Keeps textures sharp when viewed at angles (floors, walls). GPU cost on modern hardware is negligible. |
 | **Shader Detail** | Low | Surface reflections and material effects. No competitive impact. Low = best performance. |
 | **Particle Detail** | Low or Medium | Controls complexity of explosion, smoke, and impact particles. Lower = less visual noise during firefights. No argument for High in competitive. |
-| **Ambient Occlusion** | Disabled or Medium | Contact shadows in corners and against surfaces. Disabled = best performance. Medium if GPU has headroom and you prefer the visual depth. No direct gameplay impact. |
+| **Ambient Occlusion** | Medium | Renders contact shadows where player models meet floors and walls. Without AO, feet and lower legs visually merge into the ground in dark areas and smoke edges, making partial peeks and crouched bodies harder to read. With AO Medium, the contact shadow separates the model from the surface. The GPU cost on modern cards is unmeasurable on competitive settings, and several top pros (donk among them) run Medium for this exact visibility advantage. Off is only defensible on a hard GPU bottleneck. |
 | **Boost Player Contrast** | Enabled | Makes player silhouettes more distinct from backgrounds. Free visibility improvement — no performance cost. |
 | **Render Multiprocessing** | Enabled | Allows CS2 to distribute rendering work across CPU threads. Always on. |
 | **High Dynamic Range** | Quality if GPU allows, Performance otherwise | HDR affects lighting calculation quality — a GPU task. Since CS2 is CPU-bottlenecked, the GPU usually has capacity for Quality. Test: if GPU frametime doesn't increase, use Quality. |
