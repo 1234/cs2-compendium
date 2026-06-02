@@ -17,8 +17,22 @@ Three parts: **Video settings**, **Launch options**, **autoexec.cfg**.
 | **Display Mode** | Fullscreen | Exclusive fullscreen = lowest input latency. Fullscreen Windowed lets Windows interfere. |
 | **Refresh Rate** | Max your monitor supports | Always set to max. There is no reason to cap it here. |
 | **Brightness** | 100–110% | No performance impact. Set to where enemy models are clearest against backgrounds. |
-| **Color Mode** | Computer Monitor | TV mode applies a different gamma curve designed for television displays — washes out the image for monitor use. Always Computer Monitor. |
+| **Color Mode** | Computer Monitor or Television | Personal preference — see note below. |
 | **Laptop Power Savings** | Disabled | Throttles GPU performance. Off even on a laptop. |
+
+**Color Mode — Computer Monitor vs. Television:**
+
+The two modes apply different gamma curves. *Computer Monitor* preserves the reference
+curve your display is calibrated for. *Television* lifts blacks and brightens midtones,
+which makes dark areas — Mirage apartments, Inferno banana, Nuke outside — easier to
+read. Some players deliberately use Television mode for that shadow visibility, accepting
+the slightly washed look as a tradeoff. Others find it kills contrast and prefer
+Computer Monitor.
+
+Neither is objectively wrong. Try both for a few matches. Whichever makes enemies
+easier for *you* to see in dark corners is the correct choice — it's purely personal.
+
+---
 
 **Resolution and aspect ratio — the actual tradeoff:**
 
@@ -94,6 +108,12 @@ On a gaming PC the power cost is irrelevant. Leave it on.
 ## Launch Options
 
 Set in Steam: right-click CS2 → Properties → Launch Options.
+
+Valve engineer John McDonald: "The best launch options are no launch options. They are
+the most heavily tested by the dev team." Top pros including donk officially run zero
+launch options. If you're chasing maximum stability, an empty Launch Options field is a
+legitimate answer. The options below are the small set that are still net-positive in
+2026 — everything else has either been absorbed into the engine or actively harms it.
 
 ### Use these
 
