@@ -96,17 +96,24 @@ Intel CPUs: Ultimate Performance is fine.
 ## 4. HAGS — Hardware-Accelerated GPU Scheduling
 
 **Where:** Settings → System → Display → Graphics → Change default graphics settings  
-**Setting:** Off
+**Setting:** Off on Pascal/Turing (10/20-series). Leave On on Ada (RTX 40-series) and Blackwell (RTX 50-series) if you use Reflex.
 
 HAGS moves GPU scheduling work from the CPU to the GPU itself. In theory this reduces
-CPU overhead. In practice it introduces frame time inconsistency in competitive games
-and can increase input latency in specific scenarios.
+CPU overhead. In practice on older architectures it introduces frame time inconsistency
+in competitive games and can increase input latency in specific scenarios.
 
-CS2 does not benefit from HAGS on. Turn it off.
+**The RTX 40-series and 50-series caveat:** NVIDIA's Reflex SDK depends on HAGS being
+enabled to reach its lowest-latency path on Ada and Blackwell. CS2 ships Reflex.
+If you turn HAGS off on a 40/50-series card, you give up the Reflex frame pacing
+benefit that the driver was designed around. On those GPUs, leave HAGS on.
 
-If you have a new GPU (RTX 40-series or later) and genuinely want to test it:
-run with it off first, establish a baseline, then test on. Use CapFrameX or
-HWInfo64 to compare frame times — not just average FPS.
+**On Pascal and Turing (GTX 10-series, RTX 20-series):** Turn it off. The latency
+improvements promised by HAGS never materialized on those architectures and frame time
+variance gets worse in CS2.
+
+**On Ampere (RTX 30-series):** Test both. The hardware supports HAGS but the gain is
+inconsistent depending on driver version. Run a baseline with it off, then on. Use
+CapFrameX or HWInfo64 to compare frame times — not just average FPS.
 
 ---
 
