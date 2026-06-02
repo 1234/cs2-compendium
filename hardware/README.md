@@ -71,11 +71,29 @@ in CS2 specifically.
 | Core i5-14600K | ~400–430 FPS avg at 1080p low (GPU-dependent), excellent price/performance |
 | Core i9-13900K / 14900K | High clock, but trails X3D in CS2 despite higher raw MHz |
 
-**Intel-specific setting:** On 12th–14th gen Intel CPUs with P-cores and E-cores,
-set CS2's process affinity to prefer Performance cores only. Testing by 3kliksphilip
-(via Strafe) documented up to 15% improvement in average and minimum frame rates
-under optimal conditions — real-world gains vary by map and system configuration.
-The E-cores introduce scheduling overhead without adding useful throughput for CS2's workload.
+**Intel-specific setting — modern hybrid scheduling:** On 12th–14th gen Intel CPUs
+with P-cores and E-cores, the old advice was to disable E-cores in BIOS or pin
+CS2 to P-cores only. This is now outdated. The 15% figure that gets quoted
+(originally from 3kliksphilip via Strafe) was measured on a 13900K with 8P+16E
+in an early Win11 Thread Director environment. On 14th-gen parts with fewer
+E-cores under Windows 11 24H2 with a mature Thread Director, disabling E-cores
+*reduces* average FPS in CS2 — community benchmarks on the 14600K show roughly
+600 avg → 500 avg when E-cores are turned off.
+
+**Keep E-cores AND Hyperthreading enabled in BIOS.**
+
+Use Valve's in-game setting instead. Settings → Video → Advanced Video →
+*CPU core usage preference* → **Prefer Performance Cores** (added by Valve in
+late 2024). This is a soft scheduler hint that asks Windows to prefer P-cores
+for CS2's hot threads without starving the engine of background-thread
+throughput on E-cores.
+
+**Optional — Process Lasso Core 0 exclusion:** A small additional gain comes
+from excluding Core 0 (not P-cores) from cs2.exe's affinity via Process Lasso.
+Core 0 carries Windows interrupt routing and timer work; excluding it from CS2
+removes a source of frametime contention. Thour's measurements show roughly
+2.2% average and 3.9% 1%-low improvement. Exclude **Core 0 only** — not all
+E-cores, not all but the P-cores.
 
 ### What not to buy for CS2
 

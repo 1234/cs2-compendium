@@ -118,11 +118,12 @@ These are CS:GO launch options that still circulate but do nothing or cause prob
 | Option | Why it's dead |
 |---|---|
 | `-d3d9ex` | CS:GO DirectX 9 optimization. CS2 runs on DX11/Vulkan. Ignored. |
-| `-threads [n]` | CS:GO CPU threading option. CS2 handles threading internally. |
+| `-threads [n]` | CS:GO CPU threading override. CS2 manages threading internally, and forcing a thread count can destabilize the renderer. |
 | `-tickrate 128` | Only affects local servers you host yourself. Has no effect on matchmaking. |
 | `+fps_max 0` | Put this in autoexec.cfg instead — it belongs in config, not launch options. |
 | `-freq [hz]` / `-refresh [hz]` | CS2 auto-detects refresh rate from your OS display settings. These parameters are largely ignored — set the refresh rate correctly in Windows instead. |
-| `-high` | A Valve developer confirmed this makes performance worse in CS2, not better. Process priority for CS2 is better managed through Windows Task Manager if needed. |
+| `-high` | Net-negative on modern hybrid CPUs (12th gen Intel and newer, Ryzen with hetero CCDs). Forcing High priority starves the audio driver and Windows scheduler threads, which causes stutter and audio dropouts. A Valve developer confirmed this makes CS2 perform worse, not better. Leave priority at Normal. |
+| `-noreflex` | Workaround for a late-2024 Source 2 bug that has since been patched. Disabling Reflex now just costs you the latency reduction Reflex provides. Remove it. |
 
 ---
 
