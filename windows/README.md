@@ -110,13 +110,19 @@ HWInfo64 to compare frame times — not just average FPS.
 
 ---
 
-## 5. NVIDIA Control Panel
+## 5. NVIDIA App — 3D Settings for CS2
 
-**Where:** Right-click desktop → NVIDIA Control Panel → Manage 3D Settings  
-Set globally under *Global Settings*, or per-program under *Program Settings* for CS2 specifically.
+**Where:** NVIDIA App → Graphics → Program Settings → Counter-Strike 2  
+(For display-level settings like G-Sync, use NVIDIA App → System → Display.)
 
-Per-program settings take priority over global — use program settings for CS2 if you
-want to keep other applications unaffected.
+NVIDIA retired the Classic NVIDIA Control Panel with Game Ready driver 610.47
+(May 2026). On a clean install of any recent driver, only the NVIDIA App exists —
+the right-click desktop entry is gone. The setting names below are unchanged from
+the old Control Panel, only the click path has moved.
+
+Per-program settings take priority over global — set them under Counter-Strike 2's
+entry in Program Settings so other applications stay unaffected. If the game does
+not appear in the list, click *Add* and browse to `cs2.exe`.
 
 | Setting | Value | Why |
 |---|---|---|
