@@ -179,29 +179,72 @@ constraint. Test both with your actual hardware.
 
 ### What the Windows input stack does
 
-When your mouse moves, the signal travels through the Windows Human Interface Device
-(HID) stack before reaching any application. Along the way, Windows can apply:
+When your mouse moves, the signal travels through the Windows kernel HID stack —
+`HIDClass.sys` → `mouhid.sys` → `mouclass.sys` — before any user-space application
+sees it. From there it can take two paths:
 
-- **Pointer speed multiplier** — scales movement by the Windows pointer speed setting
-  (6/11 = 1:1, any other value adds a multiplier)
-- **Enhance Pointer Precision** — non-linear acceleration that makes fast movements
-  cover more distance than slow ones
+- **Legacy path (`WM_MOUSEMOVE`):** the kernel hands the movement to the Windows
+  cursor/pointer pipeline, which applies the pointer-speed multiplier (6/11 = 1:1)
+  and, if enabled, *Enhance Pointer Precision* — a non-linear acceleration curve
+  that makes fast flicks travel further than slow ones. The app receives a cursor
+  delta that has already been mangled.
+- **Raw Input path (`WM_INPUT`):** the application registers for the Raw Input API
+  and receives the device-level delta straight from the HID stack, before the
+  pointer pipeline touches it.
 
-For desktop use, these features are intentional. For CS2, they are catastrophic —
-every muscle memory rep you build is built against a moving target, not a fixed input.
+For desktop use, the legacy pipeline is intentional. For CS2, it would be catastrophic —
+every muscle memory rep you build would be built against a moving target.
 
-### What raw input bypasses
+### What raw input actually bypasses
 
-With raw input enabled, CS2 reads mouse coordinates directly from the hardware driver,
-completely skipping the Windows HID processing layer. Your DPI setting is the only
-multiplier in the chain. The relationship between physical mouse movement and in-game
-camera movement is perfectly linear and consistent.
+Raw Input does **not** skip the HID stack. The data still flows through
+`HIDClass.sys` → `mouhid.sys` → `mouclass.sys` in the kernel. What it bypasses is
+the **Windows pointer pipeline** — pointer speed, *Enhance Pointer Precision*, and
+the legacy `WM_MOUSEMOVE` message that carries those modifications. The DPI set on
+the mouse itself is the only multiplier left in the chain. Physical movement to
+in-game camera movement is linear and consistent.
 
-**Important:** In CS2, raw input is forced on and cannot be disabled — Valve removed
-the option. The `m_rawinput 1` command is therefore redundant for in-game use.
-However, Windows-level settings (EPP, pointer speed) still affect your mouse everywhere
-outside the game — desktop, buy menu, console. Disable EPP and set pointer speed to
-6/11 at the OS level regardless.
+In CS2, raw input is forced on and cannot be disabled — Valve removed the option.
+The `m_rawinput` cvar was removed with it. There is nothing to toggle in-game.
+
+### Why you still disable EPP and fix pointer speed
+
+A fair question follows: if CS2 forces raw input and raw input bypasses the
+Windows pointer pipeline, why bother disabling *Enhance Pointer Precision* and
+setting pointer speed to 6/11 at all? In-game CS2 aim, on its own, is genuinely
+unaffected by either setting.
+
+The reasons to still disable EPP and set pointer speed to 6/11:
+
+- **Aim trainers do not all use Raw Input.** Aim Lab and some Kovaak's profiles
+  read mouse input through the legacy `WM_MOUSEMOVE` path, so EPP and pointer
+  speed mangle the curve during warmup. You then load into CS2 with raw deltas
+  and your warmup reps were built against a different input curve than the one
+  you play on.
+- **Alt-tab and menu cursor feel.** Buy menu, scoreboard overlays, alt-tab to
+  Discord or a browser between rounds — all of that runs on the legacy pointer
+  pipeline. An EPP curve makes the cursor feel different on alt-tab than in-game,
+  which is a constant low-grade distraction.
+- **Vendor software acceleration is not bypassed.** As covered above, any
+  acceleration configured in G HUB / Synapse / iCUE rides inside the HID stack
+  and reaches CS2 untouched. EPP being off does not fix that — but leaving EPP
+  on while also leaving vendor acceleration on stacks two acceleration curves.
+- **Universal pro and coach default.** Every documented pro config disables EPP
+  and runs pointer speed at 6/11. There is no measurable cost to matching the
+  default and no upside to deviating.
+
+Set pointer speed to the 6th notch (1:1) and uncheck *Enhance pointer precision*
+in Windows. Do it once. Move on.
+
+**The vendor-software caveat:** mouse manufacturer software (Logitech G HUB,
+Razer Synapse, SteelSeries GG, Corsair iCUE, Glorious Core) installs a filter
+driver that sits **inside the HID stack, before Raw Input reads from it**. Any
+acceleration, smoothing, or angle-snapping configured in that vendor app is baked
+into the deltas CS2 receives. Raw Input does not strip it out. You have to disable
+it in each vendor app explicitly — turn off *Acceleration*, *Smoothing*, *Angle
+Snapping*, and any *Pointer Precision* / *Enhanced Movement* equivalent. Setting
+polling rate and DPI in the vendor app is fine; anything that modifies the movement
+curve is not.
 
 ---
 
@@ -240,22 +283,39 @@ The tick-boundary penalty per system:
 frequencies. Sub-tick was designed as the alternative: keep 64Hz for server load,
 but process inputs at sub-millisecond precision within each tick.
 
-### What sub-tick does NOT fix
+### What sub-tick does and does NOT fix
 
 This is where it gets nuanced — and where the competitive community is genuinely divided.
+The common shorthand that "movement is clamped to 64Hz" is wrong, but so is the
+opposite claim that sub-tick makes everything 1000Hz. The truth sits between them.
 
-Sub-tick improves **hit registration precision** only. It does not affect:
+**What sub-tick does fix for movement:** start, stop, and direction-change events
+are timestamped and applied at sub-tick precision within the next 15.625ms tick.
+Testing by Hyperus102 measured roughly 0.15–0.3 unit position variance on a
+counter-strafe in CS2, versus ~3.9 units in CS:GO 64-tick. The moment your key
+goes down or up is honored at sub-tick precision, not snapped to the nearest tick
+boundary. Counter-strafing and pixel-perfect stop-tap timings benefit from this.
 
-- **Movement and animation processing** — still runs at 64Hz. Characters move, stop,
-  and change direction at 64 Hz boundaries. This is why some players report that
-  movement in CS2 feels less crisp than CS:GO 128-tick, particularly spray control
-  and peeking mechanics.
+**What still runs at 64Hz:** the physics step itself. Air acceleration, ground
+friction sampling, animation networking, and position broadcasts to other players
+all advance once per 15.625ms tick. The world state you see updating, and the world
+state others see of you, are 64Hz streams with sub-tick event timestamps layered on top.
+
+Sub-tick also does not affect:
+
 - **Your ping** — network travel time is unaffected. Sub-tick processes inputs precisely
   when they arrive — but they still had to travel.
 - **Peeker's advantage** — reduced but not eliminated. Network latency guarantees
   some advantage remains for the peeking player.
 - **Packet loss** — dropped packets cannot be timestamped or processed.
-- **Interpolation** — CS2 still interpolates player positions between updates.
+- **Interpolation** — CS2 still interpolates remote player positions between updates.
+
+**Practical implication:** do not cap FPS at 64 to "match the tick rate". You hear
+this advice from people who think the server clamps everything to 64Hz boundaries.
+It does not. The client must produce input timestamps at frame granularity for
+sub-tick to have anything to work with. Capping FPS at 64 throws away the sub-tick
+resolution sub-tick was designed to deliver. Run uncapped, or cap just below your
+refresh ceiling — never at 64.
 
 ### The debate — is CS2 sub-tick better or worse than CS:GO 128-tick?
 
