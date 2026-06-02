@@ -52,13 +52,17 @@ the enlarged L3, drastically reducing main memory access latency.
 
 | CPU | Avg FPS (1080p low) | 1% low |
 |---|---|---|
-| Ryzen 7 9800X3D | ~669 | ~362 |
+| Ryzen 7 9850X3D | ~705 | ~380 |
+| Ryzen 7 9800X3D (prev gen) | ~669 | ~362 |
+| Ryzen 7 7800X3D (older gen) | ~592 | ~318 |
 | Ryzen 5 9600X | ~500+ | ~260 |
-| Ryzen 7 7800X3D (prev gen) | ~592 | ~318 |
 
-The 9800X3D is the current benchmark leader for CS2. The X3D cache advantage
-is not marginal — it is the single largest per-frame improvement available from
-any CPU upgrade, confirmed across multiple independent benchmark sources.
+The 9850X3D (released January 2026) is the current benchmark leader for CS2,
+landing roughly 5–6% above the 9800X3D in independent testing. The 9800X3D
+remains the price/performance pick if you can still find one. The X3D cache
+advantage is not marginal — it is the single largest per-frame improvement
+available from any CPU upgrade, confirmed across multiple independent benchmark
+sources.
 
 ### Intel
 
