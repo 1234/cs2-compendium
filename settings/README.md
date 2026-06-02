@@ -156,11 +156,12 @@ when switching to that mode.
 
 **Mouse input**
 
-`m_rawinput 1` — Forces CS2 to read mouse movement directly from the hardware driver,
-completely bypassing Windows input processing. With raw input on, Windows mouse settings
-(pointer speed, Enhanced Pointer Precision) have no effect on in-game movement.
-This should always be 1. CS2 saves it to the user config, but having it explicit in
-the autoexec guarantees it survives config resets.
+Raw input is permanently forced on in CS2. The `m_rawinput` command was removed — there
+is nothing to set. What raw input actually does: it bypasses the Windows pointer pipeline
+(Enhanced Pointer Precision, pointer-speed slider), so those settings cannot affect your
+in-game aim. It does **not** bypass the HID driver stack or your vendor mouse software
+(Logitech G HUB, Razer Synapse, etc.) — any acceleration configured there still applies.
+If you want a clean input path, keep vendor software acceleration at 0.
 
 ---
 
@@ -176,7 +177,10 @@ know what's active and can adjust intentionally if the scope ever feels wrong.
 **FPS**
 
 `fps_max 0` — Removes the FPS cap entirely. More frames = lower latency between input
-and display. The game's default cap (300) is too conservative for high-refresh monitors.
+and display. CS2 raised the default cap from CS:GO's 300 to 400, but 400 still caps you
+below what a modern CPU can produce — and the cap resets to 400 every time the game
+restarts unless you persist `fps_max 0` via autoexec and `host_writeconfig`. Setting it
+in the autoexec is the only way to keep it across launches.
 
 `fps_max_menu 60` — Caps FPS on the main menu only. The menu renders at full speed by
 default, which wastes GPU power and generates heat for no benefit.
@@ -185,25 +189,18 @@ default, which wastes GPU power and generates heat for no benefit.
 
 **Network**
 
-`rate 786432` — The maximum rate (bytes/sec) CS2 will accept data from the server.
-786432 is the correct maximum value. Setting it lower throttles your connection to the
-server. Always set to max unless you have bandwidth constraints.
+`rate 1000000` — The maximum rate (bytes/sec) CS2 will accept data from the server.
+The in-game Settings UI caps the slider at 786432, but the engine itself accepts up to
+1000000 via console or autoexec. On any modern broadband connection (>10 Mbps) set it
+to 1000000. Setting it lower throttles your connection to the server. Current pros run
+1000000.
 
-`cl_cmdrate 128` / `cl_updaterate 128` — In CS2's sub-tick system, these values are
-enforced server-side and your client settings are ignored in matchmaking. They have no
-effect on Valve servers. They remain relevant only for locally hosted servers.
-They are kept in the autoexec as documentation and for local server use — having them
-set to 128 does no harm.
-
-`cl_interp 0` — Interpolation delay. CS2 interpolates the visual positions of other
-players between server updates to smooth out movement. Setting to 0 lets the server
-calculate the minimum safe value based on your connection quality — the lowest
-interpolation the network can reliably support.
-
-`cl_interp_ratio 1` — Multiplier on the interpolation window. Default is 2, which
-doubles the interpolation delay. Setting to 1 halves it — the visual representation
-of other players is closer to their actual server position. Lower = less lag compensation
-buffer, tighter feel. Used by most competitive players.
+**Buffering to smooth over packet loss** — In CS2 this is an in-game setting, not a
+console command. The CS:GO commands that used to control this (`cl_cmdrate`, `cl_updaterate`,
+`cl_interp`, `cl_interp_ratio`) were removed by Valve on September 13, 2023. See the
+*Commands REMOVED from CS2* section below for the full list. Set the in-game
+*Buffering to smooth over packet loss* to **None** on a stable connection, **1 Packet**
+if you see occasional jitter, **2 Packets** only on a visibly unstable link.
 
 ---
 
@@ -277,6 +274,56 @@ slot10 = molotov/incendiary.
 
 ---
 
+## Commands REMOVED from CS2 — with patch dates
+
+These are not "dead" in the sense of being ignored — Valve actively removed them from
+the engine. The console returns *Unknown command* or silently drops them. They will
+never come back.
+
+**Network commands** (removed September 13, 2023)
+
+| Command | Modern equivalent |
+|---|---|
+| `cl_interp` | In-game *Buffering to smooth over packet loss*. |
+| `cl_interp_ratio` | In-game *Buffering to smooth over packet loss*. |
+| `cl_updaterate` | Enforced server-side. No client equivalent. |
+| `cl_cmdrate` | Enforced server-side. No client equivalent. |
+
+The entire client-side tickrate negotiation model was replaced by sub-tick and the
+server-side *Buffering* system. Setting *Buffering to smooth over packet loss* in the
+in-game Settings menu is the only knob you still have.
+
+**Mouse**
+
+| Command | Status |
+|---|---|
+| `m_rawinput` | Raw input is permanently forced on. Command removed. |
+
+**Viewmodel bob** (removed at CS2 launch, August 2023)
+
+| Command | Status |
+|---|---|
+| `cl_bob_lower_amt` | Removed. Viewmodel bob standardized for all players. |
+| `cl_bobamt_lat` | Removed. |
+| `cl_bobamt_vert` | Removed. |
+| `cl_bobcycle` | Removed. |
+| `cl_usenewbob` | Briefly re-added February 2024, removed again in the April 26, 2024 left-hand viewmodel update. |
+
+**Performance**
+
+| Command | Status |
+|---|---|
+| `cl_forcepreload` | Removed late in CS:GO and never restored. Valve engineer John McDonald referred to it internally as "`cl_massive_hitches_at_surprising_times`" — it caused stutters, not prevented them. |
+
+**Vestigial CS:GO commands** (technically still parsed, do nothing useful)
+
+| Command | Status |
+|---|---|
+| `mat_queue_mode` | Source 2 auto-manages render threading. Forcing `2` can cause stutter. |
+| `r_dynamic` | CS2 uses a deferred renderer. The CS:GO dynamic lighting toggle has nothing to bind to. |
+
+---
+
 ## Commands that don't work — what gets passed around but shouldn't
 
 These appear in guides, config packs and Reddit threads. They either do nothing in CS2
@@ -289,10 +336,10 @@ or are left over from CS:GO where they had a different meaning.
 | `r_dynamic 0` | Disabled dynamic lighting in CS:GO. CS2 rebuilt the lighting system — command has no meaningful effect. |
 | `cl_predictweapons 1` | Already the default. Setting it explicitly changes nothing. |
 | `cl_lagcompensation 1` | Already the default. Same as above. |
-| `fps_max 999` | Functionally identical to `fps_max 0` unless your GPU produces 999+ FPS. Use `fps_max 0`. |
+| `fps_max 999` | The CS2 default is `400` (CS:GO's was `300`). `999` is just a smaller-than-uncapped ceiling. Use `fps_max 0` and persist it via autoexec — the in-engine cap resets to `400` every restart otherwise. |
 | `-threads [n]` in launch options | CS:GO CPU threading override. CS2 manages threading internally. |
-| `rate 128000` | Outdated value from older CS:GO guides. Correct maximum is `786432`. Lower values throttle your connection. |
-| `cl_bob_lower_amt` / `cl_bobamt_lat` / `cl_bobamt_vert` | **Removed from CS2.** Worked in CS:GO — Valve deliberately removed them to standardize viewmodel bob across all players. `cl_usenewbob` was briefly added in February 2024 then also removed. Console ignores these commands silently — no ban risk, but no effect either. |
+| `rate 128000` | Outdated value from older CS:GO guides. The Settings UI caps at `786432` but the engine accepts up to `1000000` via console or autoexec. Use `1000000` on any modern broadband connection. |
+| `cl_bob_lower_amt` / `cl_bobamt_lat` / `cl_bobamt_vert` / `cl_bobcycle` | **Removed from CS2 at launch.** Valve standardized viewmodel bob across all players. `cl_usenewbob` was briefly re-added in February 2024 and removed again in the April 26, 2024 left-hand viewmodel update. See the *Commands REMOVED from CS2* section above for the full list with patch dates. |
 
 **On CS:GO configs copied wholesale into CS2:**  
 Many circulating "pro configs" are CS:GO autoexecs with CS2 commands added on top.
