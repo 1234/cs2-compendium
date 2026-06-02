@@ -229,6 +229,53 @@ during gaming sessions.
 
 ---
 
+## 8. Core Isolation, Memory Integrity, and VBS
+
+**Where:** Settings → Privacy & security → Windows Security → Device security → Core isolation → Memory integrity  
+**Setting:** Off
+
+This is the single biggest Windows-side FPS gain available in CS2 from a single toggle.
+
+Virtualization-Based Security (VBS) and its child feature Memory Integrity (HVCI)
+run parts of Windows inside a Hyper-V container so that even kernel-mode malware
+cannot tamper with critical code. The security benefit is real. The performance
+cost in CPU-bound games is also real — Tom's Hardware measured roughly an 8%
+gaming penalty with VBS enabled, and CS2 is heavily CPU-bound on competitive
+settings, so the hit lands hard.
+
+Windows 11 24H2 ships with Memory Integrity *on by default* on clean installs.
+Many players are paying the 8% tax without knowing it exists.
+
+### How to verify VBS is actually off
+
+Toggling Memory Integrity off in the UI is not always enough. Press Win+R, run
+`msinfo32`, and scroll to the bottom of the *System Summary* page.
+
+- **Virtualization-based security:** must read *Not enabled*.
+- If it reads *Running* or *Enabled*, VBS is still active even if the Memory
+  Integrity toggle shows Off.
+
+If VBS is still running after toggling Memory Integrity off, the cause is almost
+always one of the Windows features that depends on Hyper-V. Open *Turn Windows
+features on or off* and uncheck:
+
+- Hyper-V (all sub-items)
+- Virtual Machine Platform
+- Windows Hypervisor Platform
+- Windows Sandbox
+- Windows Subsystem for Linux (only if you do not use WSL)
+
+Reboot. Re-check `msinfo32`. It should now read *Not enabled*.
+
+**What you lose:** Memory Integrity protection against kernel-mode rootkits,
+the ability to run WSL2 / Docker Desktop / Windows Sandbox / Hyper-V VMs. If
+you use any of those tools for work, keep VBS on and accept the FPS cost.
+
+**What you do not lose:** VAC, Steam, normal antivirus, normal Windows updates,
+Game Mode, Reflex, none of which depend on VBS.
+
+---
+
 ## Summary — what to do in order
 
 | Priority | Setting | Where |
@@ -236,12 +283,13 @@ during gaming sessions.
 | 1 | Enhanced Pointer Precision off, pointer speed 6/11 | Mouse settings → Pointer Options |
 | 2 | Keyboard repeat delay short, repeat rate fast | Control Panel → Keyboard |
 | 3 | Power plan: Ultimate Performance (or AMD High Performance) | Control Panel → Power Options |
-| 4 | HAGS off | Settings → Display → Graphics |
-| 5 | NVIDIA: Low Latency Ultra, Power Max, VSync off | NVIDIA Control Panel |
+| 4 | HAGS: off on 10/20-series, on for RTX 40/50-series Reflex | Settings → Display → Graphics |
+| 5 | NVIDIA App: Low Latency Ultra, Power Max, V-Sync **On** for G-Sync + cap ~3% below refresh (Off on non-VRR) | NVIDIA App → Graphics → Program Settings |
 | 6 | Disable fullscreen optimizations on cs2.exe | cs2.exe → Properties → Compatibility |
 | 7 | Visual effects: adjust for performance | System Properties → Advanced |
 | 7 | Xbox Game Bar off, background recording off | Settings → Gaming |
 | 7 | Startup programs — audit and trim | Task Manager → Startup |
+| 8 | Memory Integrity / VBS off (verify with `msinfo32`) | Windows Security → Device security |
 
 ---
 
