@@ -156,12 +156,76 @@ For Raptor Lake (12th/13th/14th gen) on DDR4: DDR4-3600 CL16–18 is the
 established sweet spot. Above DDR4-4000, stability becomes the primary concern
 and FPS gains are marginal for the effort.
 
+**DDR4 Gear 1 vs Gear 2 — the real reason DDR4-3600 wins:** Raptor Lake's
+integrated memory controller runs in Gear 1 (1:1 IMC-to-memory ratio) up to
+roughly DDR4-3733, and drops to Gear 2 (1:2 ratio) above it. Gear 2 halves
+the memory controller frequency relative to the DIMMs, which adds latency that
+the extra MT/s rarely recovers. DDR4-3600 in Gear 1 typically beats DDR4-4000
+in Gear 2 by 2–4% in CS2 FPS. If you bought a DDR4-4000 XMP kit, run it at
+3600 in Gear 1 rather than at rated speed in Gear 2.
+
+**How to verify your gear:** HWInfo64 → Memory page → look at *Memory Controller
+: Memory Ratio*. 1:1 means Gear 1. 1:2 means Gear 2.
+
 ### Capacity
 
-16GB is sufficient for CS2. The game does not benefit from 32GB in FPS terms.
-32GB is useful if you stream, run Discord/browser/OBS simultaneously, or multitask
-heavily. For pure CS2 performance, 16GB dual-channel at the right speed
-outperforms 32GB slow single-channel in every meaningful metric.
+16GB is technically enough for CS2 on a per-frame basis — the game does not
+need more than 16GB to render any single frame. But CS2 has a documented
+memory leak that grows session-over-session, with users reporting commit sizes
+beyond 20GB after several back-to-back matches without an engine restart.
+On 16GB you will start hitting the pagefile and tanking 1%-lows once that
+leak compounds.
+
+**Practical recommendation:** 32GB if you do not restart the game between
+matches. 16GB is fine if you restart cleanly between every session. 32GB is
+also the right answer if you stream, run Discord/browser/OBS simultaneously,
+or multitask heavily. For pure single-session CS2 performance, 16GB
+dual-channel at the right speed outperforms 32GB slow single-channel in every
+meaningful metric — but "single session" is the load-bearing qualifier.
+
+---
+
+## Intel Raptor Lake / Raptor Lake Refresh — stability
+
+If you own a 13th or 14th gen Intel K-SKU (13600K/13700K/13900K, 14600K/14700K/14900K),
+you need to address the Vmin Shift degradation issue. This is not optional and
+it is not exclusive to crashing systems — the fix is preventative.
+
+### What the issue is
+
+Intel's Raptor Lake and Raptor Lake Refresh K-SKUs ship with a microcode
+defect that causes elevated voltage requests under certain transient loads.
+Over time, this degrades the silicon's minimum stable voltage (Vmin), and
+the CPU progressively loses stability — manifesting as random BSODs, game
+crashes, and shader-compile failures. The degradation is permanent. The
+microcode fix prevents further damage; it does not restore already-degraded
+silicon.
+
+**Common symptoms:** BSOD code `0x1E` (KMODE_EXCEPTION_NOT_HANDLED),
+`VIDEO_TDR_FAILURE`, CS2 crashing on map load, Unreal Engine games failing
+to compile shaders.
+
+### The fixes
+
+Intel released microcode `0x12B` in September 2024 and a further refinement
+`0x12F` in April 2025. Both are delivered via motherboard BIOS updates.
+
+1. **Update BIOS to a version that includes microcode 0x12B or later.** Check
+   your board vendor's release notes — the changelog will name the microcode
+   revision. 0x12F is preferred if available for your board.
+2. **Load Intel Default Settings → Performance profile** in BIOS. Do NOT use
+   the vendor's "Unlimited" / "Extreme" / "Tweaker" performance profile —
+   those override Intel's power and current limits and reintroduce the
+   conditions that cause Vmin Shift. The Performance profile honors PL1, PL2,
+   and ICCMax at Intel's specified ceilings.
+3. **Verify in HWInfo64.** After applying, run HWInfo64 → Power tab. Confirm
+   PL1/PL2 and IccMax match Intel's documented values for your SKU
+   (e.g. 14600K: PL1 125W, PL2 181W, IccMax 200A).
+
+Apply this even if you have not crashed yet. The microcode fix is preventative
+and silicon already degraded cannot be recovered without RMA.
+
+
 
 ---
 
