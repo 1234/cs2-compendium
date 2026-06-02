@@ -122,15 +122,42 @@ want to keep other applications unaffected.
 |---|---|---|
 | Low Latency Mode | Ultra | Reduces pre-rendered frames in the driver queue — lower input lag |
 | Power Management Mode | Prefer Maximum Performance | Forces GPU to stay at full clock, not throttle while waiting for frames |
-| Vertical Sync | Off | VSync in the driver adds latency — disable globally, disable in-game |
+| Vertical Sync | **On** on a G-Sync Compatible monitor with an FPS cap below refresh. **Off** on a fixed-refresh (non-VRR) monitor. | On a G-Sync window with a sub-refresh cap, NVCP V-Sync never engages — it only acts as a tearing safety net at the refresh ceiling. On a non-VRR display it adds blocking latency. |
 | Texture Filtering – Quality | High Performance | Reduces GPU texture filtering work, minimal visual difference at CS2 distances |
 | Threaded Optimization | Auto | Leave at Auto — forcing On or Off can cause issues depending on driver version |
-| Max Frame Rate | Off | Control this in-game with `fps_max` instead |
+| Max Frame Rate | Set to ~3% below refresh on G-Sync Compatible; Off on fixed-refresh | Driver-side cap is more consistent than `fps_max` in CS2, which has documented frametime interactions with the Reflex SDK. |
 
-**VSync note:** With VSync off and fps_max uncapped, you may see screen tearing.
-This is normal and generally preferable to the latency VSync adds.
-If tearing bothers you: use `fps_max` set slightly below your monitor's refresh rate
-(e.g., `fps_max 537` for a 540Hz monitor) rather than enabling VSync.
+**VSync note — the canonical G-Sync Compatible recipe:** If you have a VRR display
+(G-Sync Compatible, FreeSync over DisplayPort/HDMI), the configuration that gives
+the lowest latency *and* zero tearing is:
+
+- NVIDIA App V-Sync: **On**
+- In-game V-Sync: **Off**
+- NVIDIA Reflex (in CS2 video settings): **Enabled + Boost**
+- Frame rate cap: **~3% below your refresh rate**, set in NVIDIA App's Max Frame Rate
+
+This is the BlurBusters G-Sync 101 recipe, mirrored in NVIDIA's System Latency
+Optimization Guide and confirmed by Valve's own in-game popup added in June 2024.
+The math: on a 240Hz panel, cap at ~232. On a 360Hz panel, cap at ~349. On a 480Hz
+panel, cap at ~465. The exact 3% offset keeps the framerate inside the VRR window
+so V-Sync's blocking behavior never triggers — it only catches a frame at the
+refresh ceiling, preventing the tear.
+
+**Where to set the cap:** NVIDIA App's Max Frame Rate is more reliable than CS2's
+`fps_max` in this role. The in-engine cap has documented frametime spike interactions
+with the Reflex SDK on some driver versions. The driver-side cap is pre-render queue
+and doesn't fight Reflex.
+
+**On a fixed-refresh (non-VRR) monitor:** Turn NVIDIA App V-Sync **Off**, in-game
+V-Sync **Off**, and leave `fps_max` uncapped (or set well above refresh). You'll see
+tearing. That's the correct trade for the lowest possible latency on a non-VRR panel.
+Do not enable V-Sync to hide tearing — the latency cost is real and measurable.
+
+| Display type | NVIDIA App V-Sync | In-game V-Sync | Reflex | Frame cap |
+|---|---|---|---|---|
+| G-Sync Compatible / VRR | On | Off | Enabled + Boost | ~3% below refresh |
+| Fixed-refresh, you accept tearing | Off | Off | Enabled | Off (uncapped) |
+| Fixed-refresh, you cannot tolerate tearing | Off | On | Enabled + Boost | One frame below refresh |
 
 ---
 

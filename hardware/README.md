@@ -180,9 +180,49 @@ Choosing a GPU for more VRAM to help CS2 is not a valid reason.
 Only if one of these is true:
 - Your GPU cannot maintain your target FPS even after CPU/RAM are optimized
 - You play at 1440p or higher and want consistent 300+ FPS
-- You want to use MSAA 8× at high refresh — that increases GPU load
+- You want to use MSAA 4× at high refresh — that increases GPU load (8× costs
+  roughly 15–18% even on top GPUs per Thour's measurements, 2×/4× is the
+  pro-floor consensus)
 
 Otherwise, GPU money is better spent on CPU, RAM, or monitor for CS2 specifically.
+
+### VRR FPS cap — how to compute it
+
+For G-Sync Compatible / FreeSync displays, your FPS cap needs to sit just
+below the panel's max refresh so the VRR window stays active and V-Sync
+never has to engage. The rule the community used in the 60–240Hz era was
+"refresh minus 3" (so 237 for 240Hz, 357 for 360Hz). That fixed-FPS
+heuristic does not scale cleanly to 360/480/540Hz panels — driver-side LFC
+on G-Sync Compatible has looser overshoot control than native G-Sync
+modules, and a 3-FPS margin is too tight at high refresh.
+
+**Use roughly 3% below max refresh:**
+
+| Display | Cap |
+|---|---|
+| 240Hz native G-Sync module | 237 |
+| 240Hz G-Sync Compatible | 233 |
+| 360Hz G-Sync Compatible | 349 |
+| 480Hz G-Sync Compatible | 466 |
+| 540Hz G-Sync Compatible | 525 |
+
+**Reflex auto-cap formula:** When G-Sync is on, V-Sync is on at the driver
+level, and a Reflex-enabled title is running, NVIDIA's driver applies its
+own internal cap at:
+
+```
+Cap = Refresh − (Refresh² ÷ 3600)
+```
+
+For 240Hz that's 240 − 16 = 224 FPS. For 360Hz that's 360 − 36 = 324 FPS.
+For 540Hz that's 540 − 81 = 459 FPS. Per BlurBusters G-Sync 101 and NVIDIA's
+System Latency Optimization Guide, this is the lowest-latency configuration
+for a Reflex title on a VRR display.
+
+**Where to set the cap:** Prefer NVIDIA App → Graphics → Program Settings →
+cs2.exe → *Max Frame Rate* over CS2's in-engine `fps_max`. Valve's `fps_max`
+interacts with the Reflex SDK in ways that have produced documented frametime
+spikes; a driver-side cap sidesteps that.
 
 ---
 
