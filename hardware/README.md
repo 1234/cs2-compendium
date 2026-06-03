@@ -103,21 +103,15 @@ measurements show roughly 2.2% average and 3.9% 1%-low improvement on a
 P-cores.
 
 **Do NOT apply this on 6 P-core SKUs (13600K, 14600K).** A 60-second CS2 capture
-with Core 0 excluded on a 14600K measured during this compendium's development
-showed:
-
-| Metric | Default affinity | Core 0 excluded | Delta |
-|---|---|---|---|
-| Avg FPS | 233 | 233 | 0% |
-| 1%-Low | 146 | 143 | −2% |
-| **Min FPS** | **71** | **35** | **−51%** |
-| AdaptiveStd | 49 | 53 | +9% |
-
-The Min collapse is the tell — with only 6 P-cores, taking one off the active
-set leaves CS2 short of threads for its render/main loop under load. The trade
-is "−1 Core 0 interrupts" versus "−1 P-core for the renderer", and on 6P SKUs
-the second cost dominates. See [Measuring](../measuring/README.md) for the
-A/B protocol used to verify this.
+on a 14600K measured during this compendium's development showed Min FPS
+collapse from 71 to 35 and AdaptiveStd worsen 9% with Core 0 excluded, while
+Avg stayed flat. The Min collapse is the tell — with only 6 P-cores, taking
+one off the active set leaves CS2 short of threads for its render/main loop
+under load. The trade is "−1 Core 0 interrupts" versus "−1 P-core for the
+renderer", and on 6P SKUs the second cost dominates. See
+[exp-003](../experiments/exp-003-process-lasso-6p-core.md) for the full
+capture and methodology, and [measuring](../measuring/README.md) for the
+A/B protocol used to verify it.
 
 ### What not to buy for CS2
 

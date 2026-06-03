@@ -180,6 +180,11 @@ Do not enable V-Sync to hide tearing — the latency cost is real and measurable
 | Fixed-refresh, you accept tearing | Off | Off | Enabled | Off (uncapped) |
 | Fixed-refresh, you cannot tolerate tearing | Off | On | Enabled + Boost | One frame below refresh |
 
+*VRR row caveat: if your sustained FPS is well below refresh,
+[exp-001](../experiments/exp-001-vrr-vs-fixed-refresh.md) and the
+*When VRR inverts* note below explain why the VRR row stops being
+the lowest-latency / smoothest answer.*
+
 #### When VRR inverts — FPS well below refresh
 
 The G-Sync Compatible recipe
