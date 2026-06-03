@@ -352,11 +352,17 @@ image at the moment you react. The intervals:
 | 144 | 6.94 ms |
 | 240 | 4.17 ms |
 | 360 | 2.78 ms |
+| 480 | 2.08 ms |
 | 540 | 1.85 ms |
+| 600 | 1.67 ms |
 
-**The current competitive standard is 360Hz.** 240Hz is the minimum for serious play.
-144Hz is viable for ranked but is considered outdated at the competitive level.
-See [Fundamentals](../fundamentals/README.md) for the full Hz analysis.
+**360Hz is the realistic competitive floor for players; 480–540Hz is the
+realistic upper end.** 240Hz is still viable for serious play. 144Hz is
+viable for ranked but outdated at the competitive level. The IEM / ESL
+tournament stage runs ZOWIE XL2586X (540Hz Fast-TN, DyAc 2) through 2027,
+with the [XL2586X+ at 600Hz](https://forums.guru3d.com/threads/zowie-presents-its-xl2586x-esports-monitor-with-a-staggering-600hz-refresh-rate.454896/)
+in rotation. See [Fundamentals](../fundamentals/README.md) for the full Hz
+analysis.
 
 ### Panel types — what actually matters for CS2
 
@@ -385,15 +391,23 @@ as the answer for a photo editor.
 - Verdict: **avoid for CS2.** The dark-scene smearing is a direct gameplay disadvantage.
 
 **OLED**
-- Response time: ~0.03ms GtG — effectively instant pixel switching
+- Response time: ~0.02–0.03ms GtG — effectively instant pixel switching
 - Color: best available — true blacks, perfect contrast
-- Refresh rate ceiling: currently 240Hz for most gaming OLEDs
+- Refresh rate ceiling (2026): 480Hz QD-OLED ([LG 27GX790A](https://www.tomshardware.com/monitors/gaming-monitors/asus-world-first-oled-esports-monitor-can-hit-540hz-at-1080p-rog-strix-oled-model-among-four-fresh-offerings)),
+  540Hz Tandem WOLED ([ASUS XG259QWPG Ace](https://rog.asus.com/articles/gaming-monitors/the-rog-strix-oled-xg259qwpg-ace-combines-oled-performance-and-tournament-grade-specs/),
+  June 2026), 540Hz QD-OLED 1440p ([ASUS PG27UCDM](https://www.tomshardware.com/monitors/gaming-monitors/asus-world-first-oled-esports-monitor-can-hit-540hz-at-1080p-rog-strix-oled-model-among-four-fresh-offerings)).
+  The 240Hz OLED ceiling no longer applies.
 - Burn-in risk: static HUD elements (radar, HP bar, crosshair) can cause burn-in with
   extreme prolonged use — modern gaming OLEDs include pixel-shift and compensation cycles
   that reduce but don't eliminate this risk. Documented cases exist. Players putting
   4+ hours daily into CS2 at high brightness long-term should factor this in.
-- Verdict: exceptional display quality but capped at 240Hz currently. For players
-  who prioritize refresh rate above 240Hz, OLED is not yet the answer for CS2.
+- VRR Flicker caveat: OLED gamma is calibrated for fixed refresh; under VRR the
+  refresh varies and the calibrated curve drifts, producing visible brightness/gamma
+  shift especially in dark UI areas. See
+  [exp-001 § Conclusion](../experiments/exp-001-vrr-vs-fixed-refresh.md).
+- Verdict: exceptional display quality with refresh rates now matching TN at 540Hz
+  and approaching 600Hz Fast-TN. The case for TN over OLED in 2026 is essentially
+  tournament-supply parity, not technical superiority.
 
 ### GtG vs MPRT — which response time matters
 
@@ -424,18 +438,22 @@ within measurement noise (~±2ms in standardized testing).
 
 ### What pros actually use — and why
 
-As of 2025/2026, ZOWIE dominates the professional CS2 scene:
+As of 2026, ZOWIE dominates the professional CS2 scene:
 
-- ZOWIE is the official monitor partner for IEM and ESL events through 2027
-- ~90% of tracked CS2 pros use ZOWIE monitors, predominantly XL2566K (360Hz TN) or XL2586X (500Hz+ TN)
-- The panel is TN — not because TN is technically superior to modern fast-IPS,
-  but because **ZOWIE is the tournament standard and pros train on what they play on**
+- ZOWIE is the official monitor partner for IEM and ESL events through 2027.
+- ~90% of tracked CS2 pros use ZOWIE monitors, predominantly XL2566K (360Hz TN),
+  XL2586X (540Hz Fast-TN with DyAc 2), and the [XL2586X+ at 600Hz](https://forums.guru3d.com/threads/zowie-presents-its-xl2586x-esports-monitor-with-a-staggering-600hz-refresh-rate.454896/)
+  on the IEM/ESL stage rotation.
+- The panel is TN — not because TN is technically superior to modern fast-IPS or
+  Tandem WOLED at the same refresh, but because **ZOWIE is the tournament standard
+  and pros train on what they play on**.
 
-This is an important nuance: pro monitor choice is partly driven by tournament
-standardization, not purely by technical optimality. Modern fast-IPS at 360Hz
-is competitive with TN for response time while providing better image quality.
-The pro consensus on ZOWIE TN reflects habit, ecosystem, and tournament supply —
-not a unanimous technical verdict against IPS.
+This is an important nuance: pro monitor choice is driven by tournament
+standardization and supply, not by a unanimous technical verdict. Modern
+fast-IPS at 360Hz and 540Hz Tandem WOLED ([ASUS XG259QWPG Ace](https://rog.asus.com/articles/gaming-monitors/the-rog-strix-oled-xg259qwpg-ace-combines-oled-performance-and-tournament-grade-specs/))
+are technically competitive with TN for response time while providing better
+image quality. The pro consensus on ZOWIE TN reflects habit, ecosystem, and
+tournament supply — not a measured technical preference.
 
 ---
 

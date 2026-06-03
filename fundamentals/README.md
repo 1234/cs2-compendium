@@ -80,7 +80,9 @@ display latency.
 | 144 Hz | 6.94 ms |
 | 240 Hz | 4.17 ms |
 | 360 Hz | 2.78 ms |
+| 480 Hz | 2.08 ms |
 | 540 Hz | 1.85 ms |
+| 600 Hz | 1.67 ms |
 
 ### Diminishing returns — where they actually are
 
@@ -91,7 +93,9 @@ The perceptual benefit of higher Hz follows a curve, not a line:
 | 60 → 144 Hz | 9.73 ms |
 | 144 → 240 Hz | 2.77 ms |
 | 240 → 360 Hz | 1.39 ms |
-| 360 → 540 Hz | 0.93 ms |
+| 360 → 480 Hz | 0.69 ms |
+| 480 → 540 Hz | 0.23 ms |
+| 540 → 600 Hz | 0.19 ms |
 
 The 60 → 144Hz jump is massive and perceptible to almost everyone.
 The 144 → 240Hz jump is smaller but still meaningful in competitive play.
@@ -101,8 +105,11 @@ though they remain measurably real at the hardware level.
 **The competitive floor is 240Hz.** 144Hz is viable for ranked play but is now
 considered outdated at the serious competitive level — the hardware has become
 accessible enough that 240Hz is the minimum expectation.
-360Hz is the current professional standard. The jump from 240 to 360 saves 1.39ms
-per frame — small in isolation, but at pro level reaction times, meaningful.
+**360Hz is the realistic player floor; 480–540Hz is the realistic upper end and
+where the IEM/ESL stage runs.** The jump from 240 to 360 saves 1.39 ms per
+frame; 360 → 480 another 0.69 ms; above 480 the per-frame gains drop below
+0.25 ms, where panel technology (OLED gamma drift under VRR, TN inverse
+ghosting, scan-out latency) matters at least as much as the Hz number itself.
 
 ### Screen tearing
 
