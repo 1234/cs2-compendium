@@ -44,7 +44,7 @@ Use when CapFrameX's built-in sensor set doesn't expose what you need:
 
 - **Memory Controller : Memory Ratio** — 1:1 means Gear 1, 1:2 means Gear 2.
   The single most important number for Raptor Lake DDR4 owners. See
-  [hardware/README.md § Intel (LGA1851 / Arrow Lake, Raptor Lake)](../hardware/README.md).
+  [hardware § DDR4 Gear 1 vs Gear 2](../hardware/README.md#ddr4-gear-1-vs-gear-2).
 - **CPU VID** per core — Vmin-Shift / degradation indicator on 13th/14th gen.
 - **GPU Hot Spot vs Edge delta** — pump-out detection on aging coolers.
 - **DRAM voltage** — XMP sanity.

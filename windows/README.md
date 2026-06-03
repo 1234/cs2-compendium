@@ -146,7 +146,9 @@ not appear in the list, click *Add* and browse to `cs2.exe`.
 | Threaded Optimization | Auto | Leave at Auto — forcing On or Off can cause issues depending on driver version |
 | Max Frame Rate | Set to ~3% below refresh on G-Sync Compatible; Off on fixed-refresh | Driver-side cap is more consistent than `fps_max` in CS2, which has documented frametime interactions with the Reflex SDK. |
 
-**VSync note — the canonical G-Sync Compatible recipe:** If you have a VRR display
+#### VSync note — the canonical G-Sync Compatible recipe
+
+If you have a VRR display
 (G-Sync Compatible, FreeSync over DisplayPort/HDMI), the configuration that gives
 the lowest latency *and* zero tearing is:
 
@@ -178,7 +180,9 @@ Do not enable V-Sync to hide tearing — the latency cost is real and measurable
 | Fixed-refresh, you accept tearing | Off | Off | Enabled | Off (uncapped) |
 | Fixed-refresh, you cannot tolerate tearing | Off | On | Enabled + Boost | One frame below refresh |
 
-**When VRR inverts — FPS well below refresh:** The G-Sync Compatible recipe
+#### When VRR inverts — FPS well below refresh
+
+The G-Sync Compatible recipe
 assumes your FPS lives near refresh. If your sustained FPS is well below
 refresh (rule of thumb: FPS-to-refresh ratio below ~0.6), VRR's pacing
 benefit can flip negative. The display refresh tracks an FPS that swings

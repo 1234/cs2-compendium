@@ -90,7 +90,7 @@ relies heavily on L3 + memory latency (it's why X3D parts win so
 decisively in this title). Each L3 miss pays the full Gear 2 penalty.
 
 The Compendium's existing
-[hardware/README.md § DDR4 Gear 1 vs Gear 2](../hardware/README.md)
+[hardware/README.md § DDR4 Gear 1 vs Gear 2](../hardware/README.md#ddr4-gear-1-vs-gear-2)
 explanation predicted this exact behavior — this experiment is the
 concrete data behind that prediction.
 
@@ -98,11 +98,11 @@ concrete data behind that prediction.
 
 Two cross-references now point at this experiment:
 
-- The CS2 FPS ceiling note in [hardware/README.md § RAM](../hardware/README.md)
+- The CS2 FPS ceiling note in [hardware/README.md § RAM](../hardware/README.md#ram)
   acknowledges the memory-bound plateau as a recognizable pattern.
-- The [DDR4 Gear 1 vs Gear 2](../hardware/README.md) advice gains concrete
-  numerical evidence for the "DDR4-4000 in Gear 2 underperforms DDR4-3600
-  in Gear 1" claim.
+- The [DDR4 Gear 1 vs Gear 2](../hardware/README.md#ddr4-gear-1-vs-gear-2) advice
+  gains concrete numerical evidence for the "DDR4-4000 in Gear 2 underperforms
+  DDR4-3600 in Gear 1" claim.
 
 ### Verifying your own Gear ratio
 

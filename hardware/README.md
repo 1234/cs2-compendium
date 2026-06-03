@@ -75,7 +75,9 @@ in CS2 specifically.
 | Core i5-14600K | ~400–430 FPS avg at 1080p low (GPU-dependent), excellent price/performance |
 | Core i9-13900K / 14900K | High clock, but trails X3D in CS2 despite higher raw MHz |
 
-**Intel-specific setting — modern hybrid scheduling:** On 12th–14th gen Intel CPUs
+#### Intel-specific setting — modern hybrid scheduling
+
+On 12th–14th gen Intel CPUs
 with P-cores and E-cores, the old advice was to disable E-cores in BIOS or pin
 CS2 to P-cores only. This is now outdated. The 15% figure that gets quoted
 (originally from 3kliksphilip via Strafe) was measured on a 13900K with 8P+16E
@@ -178,9 +180,11 @@ For Raptor Lake (12th/13th/14th gen) on DDR4: DDR4-3600 CL16–18 is the
 established sweet spot. Above DDR4-4000, stability becomes the primary concern
 and FPS gains are marginal for the effort.
 
-**DDR4 Gear 1 vs Gear 2 — the real reason DDR4-3600 wins:** Raptor Lake's
-integrated memory controller runs in Gear 1 (1:1 IMC-to-memory ratio) up to
-roughly DDR4-3733, and drops to Gear 2 (1:2 ratio) above it. Gear 2 halves
+#### DDR4 Gear 1 vs Gear 2
+
+The real reason DDR4-3600 wins on Raptor Lake: the integrated memory
+controller runs in Gear 1 (1:1 IMC-to-memory ratio) up to roughly
+DDR4-3733, and drops to Gear 2 (1:2 ratio) above it. Gear 2 halves
 the memory controller frequency relative to the DIMMs, which adds latency that
 the extra MT/s rarely recovers. DDR4-3600 in Gear 1 typically beats DDR4-4000
 in Gear 2 by 2–4% in CS2 FPS. If you bought a DDR4-4000 XMP kit, run it at
