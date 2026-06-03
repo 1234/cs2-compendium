@@ -156,9 +156,11 @@ The wider player models in stretched mode make enemies an easier target to track
 hit — the visual target is 1.33× wider. Critically: **hitboxes do not scale**.
 The actual collision geometry stays the same size as at native resolution. What
 changes is how much screen space the visual model occupies, making it easier to
-keep your crosshair on target. According to prosettings.net, roughly 59% of CS2 pros
-use 4:3 stretched specifically, and around 75% play on 4:3 in any form (stretched or
-black bars).
+keep your crosshair on target. According to
+[prosettings.net's CS2 pro list](https://prosettings.net/lists/cs2/) (~57–59% on
+stretched 4:3 as of mid-2026, ~75% on 4:3 in any form including black bars), the
+4:3 stretched preference is the dominant pro choice — though every snapshot
+shifts by a few percent.
 
 The tradeoff: reduced FOV (you see less horizontally), and the visual distortion
 takes time to adapt to if you're coming from native resolution.
@@ -291,10 +293,13 @@ opposite claim that sub-tick makes everything 1000Hz. The truth sits between the
 
 **What sub-tick does fix for movement:** start, stop, and direction-change events
 are timestamped and applied at sub-tick precision within the next 15.625ms tick.
-Testing by Hyperus102 measured roughly 0.15–0.3 unit position variance on a
-counter-strafe in CS2, versus ~3.9 units in CS:GO 64-tick. The moment your key
-goes down or up is honored at sub-tick precision, not snapped to the nearest tick
-boundary. Counter-strafing and pixel-perfect stop-tap timings benefit from this.
+Testing by Hyperus102 (Metamod addon reading in-game memory, methodology
+critique of the original `cl_showpos`-based posts on Reddit;
+[skin.club summary](https://community.skin.club/en/news/cs2-subtick-vs-csgo-movement-analysis))
+measured roughly 0.15–0.3 unit position variance on a counter-strafe in CS2,
+versus ~3.9 units in CS:GO 64-tick. The moment your key goes down or up is honored
+at sub-tick precision, not snapped to the nearest tick boundary. Counter-strafing
+and pixel-perfect stop-tap timings benefit from this.
 
 **What still runs at 64Hz:** the physics step itself. Air acceleration, ground
 friction sampling, animation networking, and position broadcasts to other players
@@ -327,10 +332,13 @@ moment of movement register more reliably. The tick-boundary penalty is mathemat
 eliminated for inputs.
 
 **The case for 128-tick:** Movement, spray patterns, and animation states still process
-at 64Hz. Pros including ropz and SPUNJ have publicly stated they prefer 128-tick and
-can feel the difference in movement responsiveness. SPUNJ explicitly requested Valve
-allow 128-tick + sub-tick servers. Robin Kool (coach) demonstrated blind identification
-of the tick rate difference.
+at 64Hz. Pros including Robin "ropz" Kool and Chad "SPUNJ" Burchill have publicly
+stated they prefer 128-tick and can feel the difference in movement responsiveness
+([ropz on sub-tick feel, escorenews](https://escorenews.com/en/csgo/news/45270-ropz-claims-cs2-sub-tick-system-is-worse-than-128-tick);
+[ropz on 64-tick feedback, escorenews](https://escorenews.com/en/csgo/news/51011-ropz-the-feedback-you-get-from-the-game-on-64-tick-especially-when-you-are-good-at-it-is-trash);
+[ggrecon coverage of ropz's stance](https://www.ggrecon.com/articles/cs-pro-ropz-opens-up-in-rant-on-128-tick-rate-in-cs2/)).
+SPUNJ explicitly requested Valve allow 128-tick + sub-tick servers on HLTV Confirmed
+([Dust2.us coverage](https://www.dust2.us/news/59297/spunj-begs-valve-to-allow-128-tick-subtick-servers-in-cs2-i-want-to-play-on-whats-the-best)).
 
 **The honest answer:** Sub-tick solves one problem (hit registration at tick boundaries)
 while the 64Hz base rate creates a different one (movement/spray processing fidelity).
