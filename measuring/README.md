@@ -96,10 +96,10 @@ fall into: changing three things at once, then crediting the wrong one.
 
 ### Run-to-run scene variance
 
-A single 60-second capture has roughly ±5–10 % noise from scene variation
-(different fights, different angles, different death timing). Treat sub-5 %
+A single 60-second capture has roughly ±5–10% noise from scene variation
+(different fights, different angles, different death timing). Treat sub-5%
 deltas as inconclusive unless two or three captures agree on direction.
-P1 / P0.2 are noisier than Avg — expect ±15 % scene noise on those.
+P1 / P0.2 are noisier than Avg — expect ±15% scene noise on those.
 
 ### How to tell CPU vs GPU vs memory bottleneck
 

@@ -3,8 +3,8 @@
 ## Hypothesis
 
 The canonical BlurBusters G-Sync 101 recipe (NVCP V-Sync ON + in-game V-Sync
-OFF + Reflex + cap ~3 % below refresh) assumes the FPS lives near refresh.
-On a 540 Hz OLED running a workload that produces sustained FPS well below
+OFF + Reflex + cap ~3% below refresh) assumes the FPS lives near refresh.
+On a 540Hz OLED running a workload that produces sustained FPS well below
 refresh (CS2 at competitive settings on a mid-range CPU), VRR's pacing
 benefit may invert. Hypothesis: fixed refresh + matched cap is smoother than
 VRR + sub-refresh cap when the FPS-to-refresh ratio is below ~0.6.
@@ -19,7 +19,7 @@ VRR + sub-refresh cap when the FPS-to-refresh ratio is below ~0.6.
 | RAM | 32 GB DDR4-4000 CL18 (G.Skill F4-4000C18-16GTZR), XMP active |
 | Motherboard | MSI PRO B760M-P DDR4 |
 | OS | Windows 11 Pro Build 26200 (24H2) |
-| Primary monitor | ASUS PG27AQWP-W — 27" 1440p WOLED, 540 Hz, G-Sync Compatible, DisplayPort |
+| Primary monitor | ASUS PG27AQWP-W — 27" 1440p WOLED, 540Hz, G-Sync Compatible, DisplayPort |
 | Game | Counter-Strike 2 |
 | Resolution | 1280×960 (4:3 stretched) |
 | Scene | 60-second deathmatch capture, consistent action level |
@@ -34,10 +34,10 @@ the display/sync stack.
 
 | Run | Display refresh | NVCP V-Sync | In-game V-Sync | G-Sync | Cap | Reflex |
 |---|---|---|---|---|---|---|
-| A | 540 Hz | On | Off | On (Compatible, DP) | NVCP Max FR 525 | Enabled + Boost |
-| B | 270 Hz | Off | Off | Off | autoexec `fps_max 263` | Enabled + Boost |
+| A | 540Hz | On | Off | On (Compatible, DP) | NVCP Max FR 525 | Enabled + Boost |
+| B | 270Hz | Off | Off | Off | autoexec `fps_max 263` | Enabled + Boost |
 
-Run A is the literal BlurBusters G-Sync 101 recipe for a 540 Hz panel.
+Run A is the literal BlurBusters G-Sync 101 recipe for a 540Hz panel.
 Run B is fixed refresh at the closest available step below sustained FPS
 (the panel's pixel-clock limits at 1280×960 exposed only 240/270/540 as
 refresh options).
@@ -48,24 +48,24 @@ Compiled across the relevant captures during compendium development:
 
 | Metric | Run A (VRR @ 540) | Run B (fixed @ 270) | Delta |
 |---|---|---|---|
-| Average FPS | 248 | 232 | −6 % |
-| Median FPS | 321 | 246 | −23 % |
-| **P1 (1%-Low)** | **97** | **146** | **+51 %** |
-| P0.2 | 47 | 130 | +176 % |
-| P0.1 | 43 | 118 | +175 % |
-| Min FPS | 42 | 71 | +69 % |
-| **AdaptiveStd (frametime variance)** | **84** | **49** | **−41 %** |
+| Average FPS | 248 | 232 | −6% |
+| Median FPS | 321 | 246 | −23% |
+| **P1 (1%-Low)** | **97** | **146** | **+51%** |
+| P0.2 | 47 | 130 | +176% |
+| P0.1 | 43 | 118 | +175% |
+| Min FPS | 42 | 71 | +69% |
+| **AdaptiveStd (frametime variance)** | **84** | **49** | **−41%** |
 
 Subjectively: Run A felt visibly stuttery (micro-hitches on every fight) despite
 the higher Avg/Median. Run B felt smooth and stable.
 
 Sensor-side both runs are healthy: no power-cap hits, no thermal throttling,
-CPU 5.3 GHz stable, GPU eats 25-30 % load, no clock drops.
+CPU 5.3 GHz stable, GPU eats 25–30% load, no clock drops.
 
 ## Conclusion
 
 VRR + cap-below-refresh **inverted** on this hardware combination. With
-sustained FPS at ~30-45 % of refresh and AdaptiveStd already high from the
+sustained FPS at ~30–45% of refresh and AdaptiveStd already high from the
 CPU/memory-bound profile, VRR's variable-refresh stacking on top of frametime
 variance produced chaotic pacing instead of glue.
 
@@ -79,17 +79,17 @@ Two compounding effects:
    and worst when refresh swings widely. Sources: TFTCentral OLED VRR
    flicker testing; RTINGS VRR flicker research.
 2. **G-Sync Compatible LFC behavior at low FPS.** When FPS drops below the
-   panel's VRR floor (spec: 48 Hz on this monitor; actual LFC engagement
+   panel's VRR floor (spec: 48Hz on this monitor; actual LFC engagement
    on G-Sync Compatible OLEDs is driver-enforced and sometimes higher
-   than the spec — TFTCentral has documented engagement at ~60 Hz on
+   than the spec — TFTCentral has documented engagement at ~60Hz on
    sister panels to suppress flicker), the driver's Low Framerate
    Compensation kicks in with frame-doubling. With Min dropping to 42 FPS,
    this engaged on the deepest dips and added pacing chaos.
 
 Switching to fixed refresh at the nearest available step **below** sustained
-FPS (270 Hz, with FPS Median 246 and P1 146) gave the display a constant
-frametime target. AdaptiveStd dropped 41 %, P1 rose 51 %, and the
-subjective "60 Hz feels smoother than 540 Hz" complaint disappeared.
+FPS (270Hz, with FPS Median 246 and P1 146) gave the display a constant
+frametime target. AdaptiveStd dropped 41%, P1 rose 51%, and the
+subjective "60Hz feels smoother than 540Hz" complaint disappeared.
 
 ## Recommendation update
 

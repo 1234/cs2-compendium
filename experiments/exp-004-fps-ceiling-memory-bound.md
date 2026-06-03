@@ -3,16 +3,16 @@
 ## Hypothesis
 
 A high-end CPU (Intel Core i5-14600K) paired with overkill GPU (RTX 4090)
-at competitive CS2 resolution should produce 500-700 FPS Average. If the
+at competitive CS2 resolution should produce 500–700 FPS Average. If the
 real-world ceiling lands much lower and **none** of the conventional FPS
 levers move it, the bottleneck is the memory subsystem — specifically the
 extra latency that DDR4-4000 incurs by running in Gear 2 on Raptor Lake.
 
 The diagnostic signature for a memory-bound CPU bottleneck:
 
-- CPU hotthread plateau-ed below 100 % (typically 75-90 %) — the core is
+- CPU hotthread plateau-ed below 100% (typically 75–90%) — the core is
   not compute-saturated, it's stalling on memory reads.
-- GPU load far below 95 % — the GPU is fed slower than it can render.
+- GPU load far below 95% — the GPU is fed slower than it can render.
 - Aggressive cap, refresh, scheduling, scheduler-hint changes all leave
   Average essentially unchanged.
 
@@ -40,36 +40,36 @@ of these should significantly move Average FPS or CPU hotthread load.
 
 | Run | Configuration |
 |---|---|
-| R1 | 240 Hz fixed / cap 234 / Reflex+Boost / HAGS on / default affinity |
-| R2 | 270 Hz fixed / cap 263 / Reflex+Boost / HAGS on / default affinity |
-| R3 | 540 Hz uncapped / Reflex Enabled (no Boost) / HAGS on |
-| R4 | 540 Hz uncapped / Reflex Enabled + Boost / HAGS on |
-| R5 | 270 Hz / cap 263 / Reflex+Boost / HAGS on / **Process Lasso Core 0 excluded** |
-| R6 | 270 Hz / cap 263 / Reflex+Boost / **HAGS off** |
+| R1 | 240Hz fixed / cap 234 / Reflex+Boost / HAGS on / default affinity |
+| R2 | 270Hz fixed / cap 263 / Reflex+Boost / HAGS on / default affinity |
+| R3 | 540Hz uncapped / Reflex Enabled (no Boost) / HAGS on |
+| R4 | 540Hz uncapped / Reflex Enabled + Boost / HAGS on |
+| R5 | 270Hz / cap 263 / Reflex+Boost / HAGS on / **Process Lasso Core 0 excluded** |
+| R6 | 270Hz / cap 263 / Reflex+Boost / **HAGS off** |
 
 ## Results
 
 | Run | Config | Avg | Median | P1 | Min | AdStd | CPU hot |
 |---|---|---|---|---|---|---|---|
-| R1 | 240 / cap 234 | 230 | — | 139 | 52 | 50 | 83 % |
-| R2 | 270 / cap 263 | **232** | 248 | **146** | **71** | **49** | 81 % |
-| R3 | 540 uncapped / no Boost | 235 | — | 141 | 19 | 53 | 79 % |
-| R4 | 540 uncapped / + Boost | 231 | — | 144 | 70 | 53 | 82 % |
-| R5 | + Core 0 excluded | 233 | 246 | 143 | 35 | 53 | **86 %** |
-| R6 | + HAGS off | 218 | 242 | 84 | 25 | 54 | 78 % |
+| R1 | 240 / cap 234 | 230 | — | 139 | 52 | 50 | 83% |
+| R2 | 270 / cap 263 | **232** | 248 | **146** | **71** | **49** | 81% |
+| R3 | 540 uncapped / no Boost | 235 | — | 141 | 19 | 53 | 79% |
+| R4 | 540 uncapped / + Boost | 231 | — | 144 | 70 | 53 | 82% |
+| R5 | + Core 0 excluded | 233 | 246 | 143 | 35 | 53 | **86%** |
+| R6 | + HAGS off | 218 | 242 | 84 | 25 | 54 | 78% |
 
-All six runs sit in a 218-235 FPS Avg band — a 7 % spread that's mostly
+All six runs sit in a 218–235 FPS Avg band — a 7% spread that's mostly
 driven by HAGS-off (R6, see [exp-002](exp-002-hags-rtx40-reflex.md)).
-The other five runs are inside ±2 % of each other on Average.
+The other five runs are inside ±2% of each other on Average.
 
 Sensor-side, all healthy runs:
 
-- CPU package power 84-88 W (PL1 is 135 W on MSI Unlimited; never approached)
-- CPU temp 69-72 °C average (Tjmax 100 °C; never approached)
+- CPU package power 84–88 W (PL1 is 135 W on MSI Unlimited; never approached)
+- CPU temp 69–72 °C average (Tjmax 100 °C; never approached)
 - CPU max clock stable at 5.3 GHz P-boost (no thermal or power throttle)
-- GPU load 25-30 % (never approached compute saturation)
+- GPU load 25–30% (never approached compute saturation)
 - GPU clock parked at 2535 MHz (no boost needed)
-- GPU power 105-115 W (TDP 450 W; nowhere near limit)
+- GPU power 105–115 W (TDP 450 W; nowhere near limit)
 
 The CPU hotthread in the 79–86% band with no thermal/power throttle, plus
 invariance across five very different scheduling/cap/refresh profiles
@@ -126,7 +126,7 @@ Two paths:
 1. **Memory tuning to Gear 1** — drop XMP, manually set DDR4-3600
    (or 3733) with CL16-19-19-39 timings, force IMC into Gear 1.
    Stability test with TestMem5 (anta777 extreme profile) for 1-2 h
-   minimum. Expected gain: 5-10 % FPS in CS2. Not recommended during
+   minimum. Expected gain: 5-10% FPS in CS2. Not recommended during
    a post-BSOD observation window — add only one variable at a time.
 2. **CPU upgrade to an X3D part** — the 96 MB L3 V-Cache on a 9800X3D /
    9850X3D dramatically reduces L3-miss frequency for the CS2 working

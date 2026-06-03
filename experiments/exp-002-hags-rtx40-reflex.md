@@ -24,7 +24,7 @@ enabled.
 | GPU driver | 610.47 Game Ready (May 2026) |
 | Reflex | Enabled + Boost (in-game CS2 setting) |
 | OS | Windows 11 Pro Build 26200 (24H2) |
-| Display | 270 Hz fixed, V-Sync off everywhere, G-Sync off |
+| Display | 270Hz fixed, V-Sync off everywhere, G-Sync off |
 | Cap | autoexec `fps_max 263` |
 | Game | Counter-Strike 2 at 1280×960 |
 
@@ -47,24 +47,24 @@ key `HwSchMode` (2 = on, 1 = off). Reboot required for toggle to take effect.
 
 | Metric | Run A (HAGS On) | Run B (HAGS Off) | Delta |
 |---|---|---|---|
-| Average FPS | 232 | 218 | −6 % |
-| Median FPS | 248 | 241 | −3 % |
-| **P1 (1%-Low)** | **146** | **84** | **−43 %** |
-| P0.2 | 130 | 77 | −41 % |
-| P0.1 | 118 | 75 | −36 % |
-| **Min FPS** | **71** | **25** | **−65 %** |
-| Max FPS | 821 | 646 | −21 % |
-| **AdaptiveStd** | **49** | **54** | **+11 %** |
-| P5 FPS | 166 | 128 | −23 % |
-| 1%-Low Average | 132 | 76 | −42 % |
-| 1%-Low Integral | 139 | 79 | −43 % |
-| CPU hotthread load | 81 % | 78 % | −3 pp |
-| CPU power (avg) | 84 W | 77 W | −8 % |
-| GPU load | 30 % | 26 % | −4 pp |
+| Average FPS | 232 | 218 | −6% |
+| Median FPS | 248 | 241 | −3% |
+| **P1 (1%-Low)** | **146** | **84** | **−43%** |
+| P0.2 | 130 | 77 | −41% |
+| P0.1 | 118 | 75 | −36% |
+| **Min FPS** | **71** | **25** | **−65%** |
+| Max FPS | 821 | 646 | −21% |
+| **AdaptiveStd** | **49** | **54** | **+11%** |
+| P5 FPS | 166 | 128 | −23% |
+| 1%-Low Average | 132 | 76 | −42% |
+| 1%-Low Integral | 139 | 79 | −43% |
+| CPU hotthread load | 81% | 78% | −3 pp |
+| CPU power (avg) | 84 W | 77 W | −8% |
+| GPU load | 30% | 26% | −4 pp |
 
-Notable pattern: Average dropped only 6 %, but the entire low-end tail
+Notable pattern: Average dropped only 6%, but the entire low-end tail
 collapsed. P1 cut nearly in half, Min cut by two-thirds. AdaptiveStd worsened
-by 11 % — exactly the chaos pattern Reflex is designed to prevent.
+by 11% — exactly the chaos pattern Reflex is designed to prevent.
 
 ## Conclusion
 

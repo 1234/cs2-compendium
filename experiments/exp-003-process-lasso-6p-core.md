@@ -21,7 +21,7 @@ trade should tip negative — especially on the Min and Low percentiles.
 | GPU | NVIDIA RTX 4090 |
 | GPU driver | 610.47 Game Ready |
 | OS | Windows 11 Pro Build 26200 (24H2) — mature Thread Director |
-| Display | 270 Hz fixed, V-Sync off, G-Sync off |
+| Display | 270Hz fixed, V-Sync off, G-Sync off |
 | Cap | autoexec `fps_max 263` |
 | Reflex | Enabled + Boost |
 | HAGS | On |
@@ -47,17 +47,17 @@ all others ticked.
 
 | Metric | Run A (default) | Run B (Core 0 excluded) | Delta |
 |---|---|---|---|
-| Average FPS | 233 | 233 | 0 % |
-| Median FPS | 248 | 246 | −1 % |
-| P1 (1%-Low) | 146 | 143 | −2 % |
-| P0.2 | 131 | 121 | −8 % |
-| P0.1 | 118 | 96 | −19 % |
-| **Min FPS** | **71** | **35** | **−51 %** |
-| **AdaptiveStd** | **49** | **53** | **+9 %** |
-| CPU hotthread load | 81 % | **86 %** | **+5 pp** |
-| GPU load | 30 % | 25 % | −5 pp |
+| Average FPS | 233 | 233 | 0% |
+| Median FPS | 248 | 246 | −1% |
+| P1 (1%-Low) | 146 | 143 | −2% |
+| P0.2 | 131 | 121 | −8% |
+| P0.1 | 118 | 96 | −19% |
+| **Min FPS** | **71** | **35** | **−51%** |
+| **AdaptiveStd** | **49** | **53** | **+9%** |
+| CPU hotthread load | 81% | **86%** | **+5 pp** |
+| GPU load | 30% | 25% | −5 pp |
 
-The CPU hotthread climbed to 86 % when Core 0 was off-limits, indicating
+The CPU hotthread climbed to 86% when Core 0 was off-limits, indicating
 more pressure on the remaining 5 P-cores. Avg held flat (memory-bound
 ceiling — see [exp-004](exp-004-fps-ceiling-memory-bound.md)), but every
 tail metric got worse.
