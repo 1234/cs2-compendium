@@ -92,12 +92,30 @@ late 2024). This is a soft scheduler hint that asks Windows to prefer P-cores
 for CS2's hot threads without starving the engine of background-thread
 throughput on E-cores.
 
-**Optional — Process Lasso Core 0 exclusion:** A small additional gain comes
-from excluding Core 0 (not P-cores) from cs2.exe's affinity via Process Lasso.
-Core 0 carries Windows interrupt routing and timer work; excluding it from CS2
-removes a source of frametime contention. Thour's measurements show roughly
-2.2% average and 3.9% 1%-low improvement. Exclude **Core 0 only** — not all
-E-cores, not all but the P-cores.
+**Optional — Process Lasso Core 0 exclusion (8+ P-core SKUs only):** A small
+additional gain comes from excluding Core 0 (not P-cores) from cs2.exe's affinity
+via Process Lasso. Core 0 carries Windows interrupt routing and timer work;
+excluding it from CS2 removes a source of frametime contention. Thour's
+measurements show roughly 2.2% average and 3.9% 1%-low improvement on a
+13900K (8P+16E). Exclude **Core 0 only** — not all E-cores, not all but the
+P-cores.
+
+**Do NOT apply this on 6 P-core SKUs (13600K, 14600K).** A 60-second CS2 capture
+with Core 0 excluded on a 14600K measured during this compendium's development
+showed:
+
+| Metric | Default affinity | Core 0 excluded | Delta |
+|---|---|---|---|
+| Avg FPS | 233 | 233 | 0% |
+| 1%-Low | 146 | 143 | −2% |
+| **Min FPS** | **71** | **35** | **−51%** |
+| AdaptiveStd | 49 | 53 | +9% |
+
+The Min collapse is the tell — with only 6 P-cores, taking one off the active
+set leaves CS2 short of threads for its render/main loop under load. The trade
+is "−1 Core 0 interrupts" versus "−1 P-core for the renderer", and on 6P SKUs
+the second cost dominates. See [Measuring](../measuring/README.md) for the
+A/B protocol used to verify this.
 
 ### What not to buy for CS2
 
