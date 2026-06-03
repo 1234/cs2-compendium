@@ -81,6 +81,17 @@ What actually affects click registration, polling rate, hardware debounce, the s
 system — and a documented myth-busting section for the settings that get passed around
 but have zero effect on CS2. Full peripheral deep-dives coming.
 
+### [Measuring](measuring/README.md)
+The tools (CapFrameX, HWInfo64, optional Claude Code MCP) and the controlled
+A/B protocol used to validate recommendations in this compendium. Plus how
+to read the numbers and distinguish CPU-bound from memory-bound bottlenecks.
+
+### [Experiments](experiments/README.md)
+Reproducible captures behind specific claims. Each experiment links to the
+section it grounds — so you can read the recommendation, follow the link,
+verify the methodology, and either confirm or contradict it on your own
+hardware.
+
 ---
 
 ## What's coming
