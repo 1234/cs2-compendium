@@ -108,6 +108,9 @@ The foundation sections exist. These are next.
 | **Binds & buy menu** | Grenade binds, jump-throw, fast buy, everything that isn't WASD but still costs rounds |
 | **Monitor calibration** | Brightness, contrast, digital vibrance — this directly affects how well you see enemies |
 | **Peripherals** | Sensor, shape, grip, wireless vs wired (2025), mousepads, polling rate — *stub exists, deep-dives coming* |
+| **Mousepads** | Cloth vs hybrid vs glass, static friction vs glide, what changes with sweat/humidity, sizing |
+| **Wireless vs wired mice** | CS2-specific latency, battery vs weight tradeoffs, why the 2024–25 pro rotation went wireless |
+| **Keyboard switches & polling** | Linear vs tactile, actuation distance, polling rate ceiling, repeat delay revisited |
 | **Audio setup** | HRTF, why to kill virtual surround, headset type, snd_ commands |
 | **Faceit setup** | Anti-cheat install, client settings, why it feels different from Premier |
 
@@ -123,7 +126,8 @@ The foundation sections exist. These are next.
 | **Grenade mechanics** | CS2's volumetric smoke system, jumpthrow, one-way smokes, HE falloff |
 | **Bomb mechanics** | Timer, kit timing, fake plant, post-plant audio, plant positions |
 | **Sound as information** | Occlusion system, footstep distance, what carries through walls, bomb beep frequency |
-| **Sub-tick system** | What it actually means, how it differs from 64/128-tick |
+| **Sound occlusion per material** | What carries through wood vs concrete vs metal — measured in-engine, not estimated |
+| **Sub-tick — input timing experiments and demo analysis** | Empirical complement to the [Fundamentals § sub-tick](fundamentals/README.md#cs2s-sub-tick-system) explainer: counter-strafe timing under sub-tick, demo-side reconstruction, the 64Hz movement-step boundary, where sub-tick measurably helps vs where it's marketing |
 
 ### Tactics & Game Sense
 
@@ -149,6 +153,8 @@ The foundation sections exist. These are next.
 | **Workshop maps** | Prefire, retake, DM, aim maps — what exists, what's worth your time |
 | **Tools & resources** | Leetify, csstats.gg, HLTV, prosettings.net, HWInfo64 — useful vs noise |
 | **Ranking systems** | How Premier and Faceit ELO actually work, what separates each level mechanically |
+| **Glossary** | eDPI, GtG vs MPRT, LFC, P1 / AdaptiveStd, sub-tick, jumpthrow, ANIMGRAPH 2, Reflex Boost, HAGS, VBS, Gear 1 vs 2, X3D — every acronym defined once |
+| **CS2 launch flag changelog** | Patch-dated changes to launch options across CS2's lifetime — adapt to new patches yourself |
 
 ### Mental & Physical
 
@@ -157,6 +163,13 @@ The foundation sections exist. These are next.
 | **Mental performance** | Tilt, session limits, variance vs mistakes, when to stop |
 | **Physical health** | RSI prevention, posture, eye strain — this ends careers early |
 | **Sleep & consolidation** | Muscle memory consolidates during sleep — why this is part of training, not separate from it |
+
+### Reference & Validation
+
+| Section | What it covers |
+|---|---|
+| **Wanted experiments** | A PR-able board of system + gameplay A/Bs the compendium wants but hasn't run yet |
+| **Experiment template** | Copy-paste hypothesis / setup / method / results skeleton with naming convention reference |
 
 ---
 
