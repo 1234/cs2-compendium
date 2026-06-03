@@ -1,4 +1,4 @@
-# Exp 004 — CS2 FPS ceiling on 14600K + DDR4-4000 in CS2
+# Exp 004 — CS2 FPS ceiling on 14600K + DDR4-4000 (Gear 2)
 
 ## Hypothesis
 

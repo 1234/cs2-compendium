@@ -19,9 +19,11 @@ Runtime.
 What it gives you per capture:
 
 - Average / Median / P95 / P99 / P5 / **P1 (1%-Low)** / P0.2 / P0.1 / Min / Max FPS
-- **AdaptiveStd** — frametime variance. Best single number for "smooth feel".
-  Lower is better. Under ~50 FPS for a CS2 capture is good; above ~70 starts
-  to feel chaotic regardless of average.
+- **AdaptiveStd** — a unitless / ms-scale frametime variance metric. Best
+  single number for "smooth feel". Lower is better. The rough bands below
+  are **derived empirically from this compendium's CS2 captures on a single
+  hardware combo**, not from CapFrameX documentation: under ~50 felt smooth,
+  above ~70 felt chaotic. Calibrate against your own baseline.
 - CPU/GPU load, power, clock, temp, VRAM during the capture window
 - Persistent JSON files for cross-run comparison
 
@@ -104,9 +106,9 @@ CapFrameX has `cfx_analyze_bottleneck`, or read the sensor numbers directly:
 
 | Pattern | Bottleneck |
 |---|---|
-| GPU load 95 %+ | GPU-bound (rare in CS2 at competitive settings) |
-| GPU load <50 %, CPU hotthread ~100 % | Classic CPU-bound — IPC / clock-bound |
-| GPU load <50 %, **CPU hotthread plateau-ed at 75-90 % (not 100 %)**, no optimization moves Avg | **Memory-bound.** CPU is stalling on RAM reads. Hebel: tighter timings, Gear 1, X3D-class cache. |
+| GPU load 97–99%+ | GPU-bound (rare in CS2 at competitive settings; 95% is borderline, 99% is unambiguous saturation) |
+| GPU load <50%, CPU hotthread ~100% | Classic CPU-bound — IPC / clock-bound |
+| GPU load <50%, **CPU hotthread plateau-ed at 75–90% (not 100%)**, no optimization moves Avg | **Memory-bound.** CPU is stalling on RAM reads. Fix: tighter timings, Gear 1, or X3D-class cache. |
 
 The third pattern is sneaky — CPU looks "not maxed", so people blame the GPU
 or driver. It's usually the L3 cache + memory latency stack.

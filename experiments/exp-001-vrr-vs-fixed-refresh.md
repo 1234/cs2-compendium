@@ -56,8 +56,8 @@ Compiled across the relevant captures during compendium development:
 | Min FPS | 42 | 71 | +69 % |
 | **AdaptiveStd (frametime variance)** | **84** | **49** | **−41 %** |
 
-Subjectively: Run A felt "ultra ruckelig" despite the higher Avg/Median.
-Run B felt smooth and stable.
+Subjectively: Run A felt visibly stuttery (micro-hitches on every fight) despite
+the higher Avg/Median. Run B felt smooth and stable.
 
 Sensor-side both runs are healthy: no power-cap hits, no thermal throttling,
 CPU 5.3 GHz stable, GPU eats 25-30 % load, no clock drops.
@@ -71,14 +71,20 @@ variance produced chaotic pacing instead of glue.
 
 Two compounding effects:
 
-1. **VRR Flicker on OLED.** WOLED pixel response is brightness-sensitive
-   to refresh rate. When refresh tracks an FPS that swings 42-893 in a
-   single 60-second capture, OLED pixel voltage modulates visibly,
-   especially in dark UI areas.
+1. **OLED VRR Flicker (gamma drift, not pixel-voltage modulation).** OLED
+   gamma is calibrated for a fixed refresh rate (typically the panel's
+   native max). Under VRR the refresh varies, which changes subpixel
+   charging time and deviates from that calibrated gamma curve. The
+   visible result is brightness and gamma drift — worst in dark UI areas
+   and worst when refresh swings widely. Sources: TFTCentral OLED VRR
+   flicker testing; RTINGS VRR flicker research.
 2. **G-Sync Compatible LFC behavior at low FPS.** When FPS drops below the
-   panel's lower VRR boundary (~48 Hz on this monitor), the driver's Low
-   Framerate Compensation kicks in with frame-doubling. With Min dropping
-   to 42 FPS, this engaged on the deepest dips and added pacing chaos.
+   panel's VRR floor (spec: 48 Hz on this monitor; actual LFC engagement
+   on G-Sync Compatible OLEDs is driver-enforced and sometimes higher
+   than the spec — TFTCentral has documented engagement at ~60 Hz on
+   sister panels to suppress flicker), the driver's Low Framerate
+   Compensation kicks in with frame-doubling. With Min dropping to 42 FPS,
+   this engaged on the deepest dips and added pacing chaos.
 
 Switching to fixed refresh at the nearest available step **below** sustained
 FPS (270 Hz, with FPS Median 246 and P1 146) gave the display a constant
@@ -88,10 +94,14 @@ subjective "60 Hz feels smoother than 540 Hz" complaint disappeared.
 ## Recommendation update
 
 The compendium's V-Sync recipe is correct **when FPS lives near refresh**.
-When sustained FPS is well below refresh (rule of thumb: FPS-to-refresh
-ratio < 0.6) and the variance is high, prefer fixed refresh at the nearest
-step that sits above 1%-Low, plus an `fps_max` matched to that refresh
-minus a few frames.
+When sustained FPS is well below refresh (working heuristic: FPS-to-refresh
+ratio below ~0.6) and the variance is high, prefer fixed refresh at the
+nearest step that sits above 1%-Low, plus an `fps_max` matched to that
+refresh minus a few frames.
+
+**Caveat on the 0.6 threshold:** this number is derived from this single
+experiment, not validated across multiple panels or workloads. Treat it as
+a starting hypothesis for your own A/B test, not an established threshold.
 
 This caveat is now reflected in [windows/README.md § VSync note](../windows/README.md).
 

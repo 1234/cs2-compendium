@@ -2,11 +2,13 @@
 
 ## Hypothesis
 
-On RTX 40-series (Ada), NVIDIA's Reflex SDK uses Hardware-Accelerated GPU
-Scheduling as the lowest-latency frame pacing path. Disabling HAGS should
-remove Reflex's pacing leverage and degrade 1%-Low and Min FPS even if
-Average FPS is largely unaffected (because the bottleneck is upstream of
-the scheduler).
+On Ada, NVIDIA Reflex's effectiveness is hypothesized to depend on HAGS
+for deterministic GPU-side frame submission. NVIDIA documents Reflex's
+CPU-side render-queue management and clock pinning but does **not**
+document HAGS as a requirement — the dependency is inferred from community
+benchmarking, not specified in the Reflex SDK / Streamline programming
+guide. This experiment tests whether disabling HAGS damages the frametime
+tail despite Reflex remaining enabled.
 
 The pre-Ada blanket advice "HAGS off for competitive games" comes from
 Pascal/Turing testing where Reflex didn't ship and HAGS produced frame-time
@@ -71,11 +73,13 @@ the frametime tail**. The Average barely moves because the CPU/memory
 bottleneck is upstream — but Reflex's ability to glue the bottom of the
 distribution to a stable boundary disappears.
 
-This matches NVIDIA's documented behavior: on Ada, Reflex SDK is most
-effective when paired with HAGS, because the driver can deterministically
-sequence frame submission and GPU work. Without HAGS, the CPU side of
-Reflex's pacing logic still runs but the GPU-side queue management
-degrades.
+This is consistent with community-observed behavior on Ada: with HAGS on,
+the driver's GPU-side scheduling can sequence Reflex's frame submission
+more deterministically. NVIDIA's Reflex SDK documentation does **not**
+list HAGS as a prerequisite — the dependency is empirical, not specified.
+Our captures support it on this hardware combo. Sources:
+[NVIDIA-RTX/Streamline ProgrammingGuideReflex](https://github.com/NVIDIA-RTX/Streamline),
+[NVIDIA Reflex developer page](https://developer.nvidia.com/performance-rendering-tools/reflex).
 
 ## Recommendation update
 
