@@ -291,3 +291,7 @@ Integrated into the main monthly plan in [README.md](../README.md).
 | Week 4 | Ancient + Overpass | Mid control + short control |
 
 After month 1: Add flashes and molotovs you skipped, expand to secondary lineups.
+
+---
+
+← [Back to Training](../README.md) | ← [Back to compendium](../../README.md)

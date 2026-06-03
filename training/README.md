@@ -1,4 +1,4 @@
-# CS2 Training
+# Training
 
 A structured monthly training plan for CS2 — built around **HaiX's KovaaK playlists**, **Refrag routines**,
 and utility practice for all 7 premier maps.
@@ -300,3 +300,7 @@ Playlist routine by [HaiX](https://www.youtube.com/@HaiX).
 Pro quotes: esports.gg (donk), pley.gg (ZywOo), escorenews.com (NiKo, s1mple).
 Schedule informed by: Dignitas, Refrag, cs.money, ProSettings, Turboboost, 3D Aim Trainer.
 Utility resources: Yprac, csnades.gg, cs2hype.com, Refrag utility guides.
+
+---
+
+← [Back to compendium](../README.md) → [Peripherals](../peripherals/README.md)

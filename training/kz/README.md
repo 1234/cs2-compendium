@@ -199,4 +199,4 @@ The goal at first is consistency, not going fast.
 
 ---
 
-Back to [Training overview](../README.md)
+← [Back to Training](../README.md) | ← [Back to compendium](../../README.md)

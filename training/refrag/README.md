@@ -95,4 +95,8 @@ to transfer it to the game. Running both is more effective than running either a
 | Saturday | Warm-up |
 | Sunday | Rest |
 
-Full weekly and monthly context: [Training README](../README.md)
+Full weekly and monthly context: [Training README](../README.md).
+
+---
+
+← [Back to Training](../README.md) | ← [Back to compendium](../../README.md)

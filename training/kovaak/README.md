@@ -122,3 +122,7 @@ Code: `KovaaKsHeadshottingJitteryFamas`
 | 5 Sphere Hipfire Extra Small | 2 |
 | 6wall18targets small reload | 2 |
 | Floating Heads Timing 400% | 3 |
+
+---
+
+← [Back to Training](../README.md) | ← [Back to compendium](../../README.md)
