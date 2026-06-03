@@ -138,7 +138,7 @@ These are CS:GO launch options that still circulate but do nothing or cause prob
 | `+fps_max 0` | Put this in autoexec.cfg instead — it belongs in config, not launch options. |
 | `-freq [hz]` / `-refresh [hz]` | CS2 auto-detects refresh rate from your OS display settings. These parameters are largely ignored — set the refresh rate correctly in Windows instead. |
 | `-high` | Net-negative on modern hybrid CPUs (12th gen Intel and newer, Ryzen with hetero CCDs). Forcing High priority starves the audio driver and Windows scheduler threads, which causes stutter and audio dropouts. Community A/B testing has consistently shown this makes CS2 perform worse, not better — consistent with John McDonald's stance that ["the best launch options are no launch options"](https://steamcommunity.com/sharedfiles/filedetails/?id=3660727626) (those are the most heavily tested by the dev team). Leave priority at Normal. |
-| `-noreflex` | Workaround for a late-2024 Source 2 bug that has since been patched. Disabling Reflex now just costs you the latency reduction Reflex provides. Remove it. |
+| `-noreflex` | Reflex On + Boost (in-game) is the default-correct setting and what pros run. Thour's measurements show `-noreflex` produces a marginal 1%-Low gain on some configs because it strips the Reflex SDK integration entirely rather than just disabling it via menu. The original late-2024 Source 2 bug that made the flag mandatory has been patched — the option today is a deliberate tradeoff, not a workaround. Default to omitting it; only revisit if Reflex is a measured net negative on your machine. |
 
 ---
 
