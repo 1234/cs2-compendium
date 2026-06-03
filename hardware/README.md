@@ -186,6 +186,14 @@ the extra MT/s rarely recovers. DDR4-3600 in Gear 1 typically beats DDR4-4000
 in Gear 2 by 2–4% in CS2 FPS. If you bought a DDR4-4000 XMP kit, run it at
 3600 in Gear 1 rather than at rated speed in Gear 2.
 
+The cost of Gear 2 shows up as a hard FPS ceiling that no GPU / driver / cap
+optimization can move. See
+[exp-004](../experiments/exp-004-fps-ceiling-memory-bound.md) for a worked
+case: a 14600K + RTX 4090 + DDR4-4000 at 1280×960 ceilings at ~232 FPS Avg
+across six very different optimization profiles, with the CPU hotthread
+stuck at 80-86 % (not 100 %) and the GPU at 25-30 % load — the canonical
+memory-stall signature.
+
 **How to verify your gear:** HWInfo64 → Memory page → look at *Memory Controller
 : Memory Ratio*. 1:1 means Gear 1. 1:2 means Gear 2.
 

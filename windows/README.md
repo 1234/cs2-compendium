@@ -115,6 +115,12 @@ variance gets worse in CS2.
 inconsistent depending on driver version. Run a baseline with it off, then on. Use
 CapFrameX or HWInfo64 to compare frame times — not just average FPS.
 
+The RTX 40-series case is documented empirically in
+[exp-002](../experiments/exp-002-hags-rtx40-reflex.md): turning HAGS off on
+an RTX 4090 with Reflex active dropped P1-Low by 43 %, Min by 65 %, and lifted
+AdaptiveStd 11 %, while Average only fell 6 % — exactly the tail-collapse
+pattern you'd expect when Reflex loses its lowest-latency pacing path.
+
 ---
 
 ## 5. NVIDIA App — 3D Settings for CS2
@@ -171,6 +177,21 @@ Do not enable V-Sync to hide tearing — the latency cost is real and measurable
 | G-Sync Compatible / VRR | On | Off | Enabled + Boost | ~3% below refresh |
 | Fixed-refresh, you accept tearing | Off | Off | Enabled | Off (uncapped) |
 | Fixed-refresh, you cannot tolerate tearing | Off | On | Enabled + Boost | One frame below refresh |
+
+**When VRR inverts — FPS well below refresh:** The G-Sync Compatible recipe
+assumes your FPS lives near refresh. If your sustained FPS is well below
+refresh (rule of thumb: FPS-to-refresh ratio below ~0.6), VRR's pacing
+benefit can flip negative. The display refresh tracks an FPS that swings
+through a wide range, which on OLED panels produces visible VRR Flicker
+in dark UI regions, and on G-Sync Compatible monitors triggers driver-side
+LFC (Low Framerate Compensation) frame-doubling on the deepest dips.
+
+In that situation, switching to a **fixed refresh rate at the nearest
+step above your 1%-Low** plus an `fps_max` matched to that refresh minus
+a few frames produces smoother gameplay than the canonical VRR recipe,
+even on a 540 Hz panel. See [exp-001](../experiments/exp-001-vrr-vs-fixed-refresh.md)
+for the empirical case (AdaptiveStd 84 → 49, P1-Low 97 → 146 by switching
+from 540 Hz + G-Sync + cap 525 to 270 Hz fixed + cap 263).
 
 ---
 
