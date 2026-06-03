@@ -71,11 +71,17 @@ Sensor-side, all healthy runs:
 - GPU clock parked at 2535 MHz (no boost needed)
 - GPU power 105-115 W (TDP 450 W; nowhere near limit)
 
-The CPU hotthread sitting at 79-86 % rather than 100 % is the smoking gun.
-At 5.3 GHz with no thermal/power restraint, a compute-bound CS2 hotthread
-would pin at 100 %. Sitting in the high 70s/low 80s means the core is
-**waiting** — for memory reads, the classic L3-miss + DRAM-latency stall
-pattern.
+The CPU hotthread in the 79–86% band with no thermal/power throttle, plus
+invariance across five very different scheduling/cap/refresh profiles
+(R1–R5), plus GPU starved at 25–30%, is a strong signature for memory-bound
+behavior — though not the only possible explanation. Other candidates
+(driver contention, present-call blocking, Thread Director migrations,
+sync waits) would typically respond to at least one of the levers
+R1–R5 changes. The invariance across them is what makes memory the leading
+hypothesis. A definitive verification would require PMU counters (LLC-miss
+rate, IPC) via Intel VTune. See Brendan Gregg's
+[CPU Utilization is Wrong](https://www.brendangregg.com/blog/2017-05-09/cpu-utilization-is-wrong.html)
+for why high-% CPU includes memory-stall cycles.
 
 ## Conclusion
 
@@ -85,9 +91,12 @@ different optimization profiles all land in a ~232 FPS Avg basin.
 
 The likely root: DDR4-4000 on Raptor Lake's IMC almost certainly runs in
 **Gear 2** (1:2 IMC-to-DRAM ratio), which halves the memory controller
-frequency and adds 6-10 ns to every memory access. CS2's working set
-relies heavily on L3 + memory latency (it's why X3D parts win so
-decisively in this title). Each L3 miss pays the full Gear 2 penalty.
+frequency and adds 6–10 ns to every memory access. CS2's cache sensitivity
+is inferred from X3D-vs-non-X3D benchmark deltas (Hardware Unboxed, Gamers
+Nexus, and Tech4Gamers 9800X3D reviews; Refrag.gg CS2 cache writeup) —
+direct working-set measurement is not publicly available, but the
+behavior is consistent with frequent L3 misses paying the full Gear 2
+penalty.
 
 The Compendium's existing
 [hardware/README.md § DDR4 Gear 1 vs Gear 2](../hardware/README.md#ddr4-gear-1-vs-gear-2)

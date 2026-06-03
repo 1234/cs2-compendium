@@ -97,7 +97,10 @@ This is reflected in [windows/README.md § HAGS](../windows/README.md#4-hags--ha
   "I thought I changed it" failures)
 - `cfx_compare_records` for the delta table above
 - Registry edit + reboot to toggle HAGS:
-  `Set-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Control\GraphicsDrivers HwSchMode -Value 1` (off) or `2` (on)
+
+```powershell
+Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\GraphicsDrivers' -Name HwSchMode -Value 1 -Type DWord  # 1 = off, 2 = on
+```
 
 ---
 

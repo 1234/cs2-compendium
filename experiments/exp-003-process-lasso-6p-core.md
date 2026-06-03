@@ -2,9 +2,12 @@
 
 ## Hypothesis
 
-The widely-cited 2.2 % Avg / 3.9 % 1%-Low gain from excluding Core 0 from
-cs2.exe affinity via Process Lasso (Thour's measurements on a 13900K)
-should not generalize to 6 P-core SKUs (13600K / 14600K). On 8 P-core
+The widely-cited 2.2% Avg / 3.9% 1%-Low gain from excluding Core 0 from
+cs2.exe affinity via Process Lasso (Thour's published benchmark, on an
+8 P-core Raptor Lake part — see
+[Thour's X post](https://x.com/ThourCS2/status/1811281735197303038))
+should not generalize to 6 P-core SKUs (13600K / 14600K). The argument
+below depends on the 8 P-core vs 6 P-core distinction. On 8 P-core
 parts the trade is "−1 Core 0 interrupt overhead" versus "−1 of 8 P-cores
 for the renderer", which can tip positive. On 6 P-core parts, losing one
 of six P-cores costs more than the avoided interrupts save, and the

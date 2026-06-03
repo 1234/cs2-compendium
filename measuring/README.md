@@ -54,7 +54,7 @@ Use when CapFrameX's built-in sensor set doesn't expose what you need:
 If you use [Claude Code](https://www.anthropic.com/claude-code), CapFrameX
 1.8.5+ ships an MCP server you can register once:
 
-```
+```powershell
 claude mcp add -s user capframex --transport http http://localhost:1337/mcp
 ```
 
@@ -80,8 +80,9 @@ fall into: changing three things at once, then crediting the wrong one.
 4. **Compare.** Look at Avg, Median, P1, P0.2, Min, AdaptiveStd. If only Avg
    moved and the percentiles stayed put, it was probably scene variance —
    re-test.
-5. **Revert if no win.** This is the step most people skip. Don't keep a
-   change that didn't help; you'll lose track of which knob did what.
+5. **Revert if no win.** This is the step you will be tempted to skip.
+   Don't keep a change that didn't help — you will lose track of which
+   knob did what.
 
 ### What the numbers actually tell you
 
