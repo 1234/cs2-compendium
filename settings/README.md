@@ -20,12 +20,12 @@ Three parts: **Video settings**, **Launch options**, **autoexec.cfg**.
 | **Laptop Power Savings** | Disabled | Throttles GPU performance. Off even on a laptop. |
 
 **Note on Color Mode:** the *Color Mode* dropdown (Television / Computer Monitor)
-was removed from CS2's Video menu in a 2025/2026 patch. If you want the old
-*Television* look (lifted blacks, brightened midtones for shadow visibility in
-Mirage apartments / Inferno banana / Nuke outside), use `mat_monitorgamma 1.6`
-in the console or autoexec; default is `2.2`. A less invasive alternative:
-bump in-game *Brightness* to 110% and NVIDIA App → Display → Color → Digital
-Vibrance to 75.
+was removed from CS2's Video menu in a 2025/2026 patch. `mat_monitorgamma`
+parses but does not affect CS2's tonemapper — Source 2 owns gamma — so do
+**not** put it in autoexec. Realistic alternatives if you want the lifted-blacks
+look the old Television mode produced: bump in-game *Brightness* to 110%,
+raise NVIDIA App → Display → Color → Digital Vibrance to ~75, or adjust the
+monitor's own gamma curve via its OSD.
 
 ---
 
