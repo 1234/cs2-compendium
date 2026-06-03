@@ -17,26 +17,15 @@ Three parts: **Video settings**, **Launch options**, **autoexec.cfg**.
 | **Display Mode** | Fullscreen | Exclusive fullscreen = lowest input latency. Fullscreen Windowed lets Windows interfere. |
 | **Refresh Rate** | Max your monitor supports | Always set to max. There is no reason to cap it here. |
 | **Brightness** | 100–110% | No performance impact. Set to where enemy models are clearest against backgrounds. |
-| **Color Mode** | (removed from Video menu — see note below) | Valve removed the dropdown in a 2025/2026 patch. The underlying console var `mat_monitorgamma` still works. |
 | **Laptop Power Savings** | Disabled | Throttles GPU performance. Off even on a laptop. |
 
-**Color Mode — what happened to the dropdown:**
-
-Valve removed the *Color Mode* dropdown from the Video menu in a 2025/2026 patch.
-The underlying engine var `mat_monitorgamma` still works from the console — it sets
-the gamma exponent the renderer targets:
-
-- `mat_monitorgamma 2.2` — default. Reference gamma, calibrated contrast.
-- `mat_monitorgamma 1.6` — lifts blacks, brightens midtones. The look the old
-  *Television* dropdown used to produce. Makes dark areas (Mirage apartments,
-  Inferno banana, Nuke outside) easier to read at the cost of washed-out blacks.
-
-Set it from the console or in your autoexec. Neither value is objectively wrong;
-it's a contrast-vs-shadow-visibility tradeoff. Try both for a few matches.
-
-If you prefer a less invasive tweak: bump in-game *Brightness* to 110% and raise
-NVIDIA App → Display → Color → Digital Vibrance to 75 — that gets you most of the
-visibility lift without crushing the gamma curve.
+**Note on Color Mode:** the *Color Mode* dropdown (Television / Computer Monitor)
+was removed from CS2's Video menu in a 2025/2026 patch. If you want the old
+*Television* look (lifted blacks, brightened midtones for shadow visibility in
+Mirage apartments / Inferno banana / Nuke outside), use `mat_monitorgamma 1.6`
+in the console or autoexec; default is `2.2`. A less invasive alternative:
+bump in-game *Brightness* to 110% and NVIDIA App → Display → Color → Digital
+Vibrance to 75.
 
 ---
 
