@@ -23,7 +23,7 @@ percent.
 | Motherboard | MSI PRO B760M-P DDR4 (MS-7E02) |
 | OS | Windows 11 Pro Build 26200 (24H2) |
 | Game | CS2, Deathmatch on Dust 2, 1280×960 (4:3 stretched) |
-| RAM kit | G.Skill F4-4000C18-16GTZR (2×16 GB), DIMM slots A2/B2 |
+| RAM kit | G.Skill F4-4000C18-16GTZR (2×16 GB), Hynix 16Gbit M/A-die single-rank (1Rx8) per Thaiphoon, DIMM slots A2/B2 |
 
 Two memory configurations, one variable:
 
@@ -188,9 +188,12 @@ Follow-ups for anyone retaining a setup like this:
   primaries at 1.424 V VDIMM cleared only a 3-cycle quick gate. Until then,
   avoid unattended large file writes, since marginal memory can corrupt files
   silently before TM5 flags an error.
-- VDIMM 1.424 V is at or above the conservative daily ceiling for Hynix DDR4
-  (~1.40 V). Confirm the DRAM IC with Thaiphoon Burner before leaving it there
-  long-term; the IC was not documented in this run.
+- The DRAM IC is Hynix 16Gbit M/A-die, single-rank (1Rx8), per Thaiphoon. VDIMM
+  1.424 V sits right at, marginally over, the operator's own documented 1.42 V
+  daily ceiling for this IC. M/A-die is heat-sensitive and does not scale
+  meaningfully past 1.42 V, so there is no upside to going higher and little
+  margin left. Keep the DIMM (SPD) temperature under ~45 °C, and prefer backing
+  off a timing over raising VDIMM if errors appear.
 
 ## Recommendation update
 
