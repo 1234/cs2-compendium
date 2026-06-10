@@ -32,8 +32,13 @@ Two memory configurations, one variable:
 | Speed | DDR4-4000 | DDR4-3600 (DRAM 1795.6 MHz) |
 | Gear | Gear 2 (1:2) | **Gear 1 (1:1), confirmed** |
 | Primary timings | XMP, CL18 (18-22-22-42) | CL16-20-20-39, tRC 59, CR 2T |
-| VDIMM | 1.35 V | 1.424 V (HWInfo VR reading) |
+| VDIMM | 1.35 V | **1.424 V** (HWInfo VR reading)† |
 | CPU SA | Auto | Auto (1.208 V) |
+
+† The 1.424 V test VDIMM sits at, marginally over, the 1.42 V daily ceiling
+pre-registered for this Hynix M/A-die kit. The experiment was retained at this
+voltage on stability grounds; the implication for daily operation is covered in
+the Operator decision section.
 
 Gear 1 verification (CPU-Z Memory tab): Memory Controller Frequency 1795.6 MHz
 equals DRAM Frequency 1795.6 MHz, ratio 1:1. The exp-004 baseline ran the same
@@ -122,6 +127,31 @@ Sensor-side, both baseline and test:
 The CPU-bound, GPU-starved signature from exp-004 is unchanged, as expected:
 the test did not move the bottleneck class, only the memory latency within it.
 
+### Memory subsystem characterization (AIDA64)
+
+AIDA64 Cache & Memory Benchmark on the Gear-1 / CL16-20-20-39 / 1.424 V VDIMM
+config measured:
+
+| Reading | DRAM Latency |
+|---|---|
+| Cold-cache, post-reboot | **59.1 ns** |
+| Warm, after gaming session | 62.2 ns |
+
+The baseline (DDR4-4000 G2) AIDA latency was not sensor-verified for the
+matched capture; the operator's pre-experiment informal AIDA at Auto / G2 was
+in the ~62-65 ns range. The cold-cache 59.1 ns is therefore a ~3-6 ns drop
+versus the prior Auto / G2 state - a clean memory-subsystem signal that
+exceeds the FPS-level signal (+1.6% Average).
+
+This is consistent with the qualitative claim that the rig is memory-latency
+bound only modestly: memory got measurably better, but only a small fraction
+of that converted into Average FPS. The warm 62.2 ns reading sitting at the
+low end of the prior Auto/G2 range also suggests that after sustained gaming
+the cold-cache improvement is partly absorbed. A confirmation pass with a
+sensor-verified same-day AIDA at Auto / G2 would tighten this; without it the
+3-6 ns figure is bounded by an informal pre-experiment reading rather than a
+matched-protocol measurement.
+
 ## Conclusion
 
 DDR4-3600 in Gear 1 produced a small but statistically resolvable Average gain
@@ -150,6 +180,14 @@ attributed to the gear change alone, since timings and VDIMM moved with it. On
 the lows, any gear effect sits below the capture-to-capture variance of a
 deathmatch scenario.
 
+The memory subsystem itself did move measurably: cold-cache AIDA latency
+dropped to 59.1 ns from an informal pre-experiment Auto / G2 reading of
+~62-65 ns (3-6 ns improvement). The CS2 FPS-level signal of +1.6% Average is
+therefore not "the tuning did nothing" — it is "the rig converted only a small
+share of the memory-subsystem improvement into game Average FPS." That is the
+honest signature of a workload that is memory-latency-sensitive at the margin,
+not memory-latency-bound at the load-bearing degree exp-004 implied.
+
 Caveats that bound this result:
 
 - No same-config multi-capture baseline exists, so the true baseline run-to-run
@@ -157,7 +195,14 @@ Caveats that bound this result:
   between-config and between-session variance, an upper bound, not the
   replicate-noise floor. The only same-config replicate set here is the three
   Gear-1 captures (SD 0.42 FPS), which is why the Average delta resolves while
-  the lows do not.
+  the lows do not. The +1.6% point estimate therefore carries no confidence
+  interval that can be checked against same-config baseline noise. It is
+  reproducible across the three test captures, and the AIDA latency drop
+  supports that something at the memory subsystem did move, but a strict
+  statistical test of whether +1.6% Average exceeds noise is not possible from
+  these data. The honest reading is "small positive, directionally consistent
+  with the memory-subsystem evidence, not statistically separable from zero
+  without a replicate-baseline pass."
 - The test conflates three changes (gear/frequency, tighter primaries, higher
   VDIMM). It cannot isolate the gear contribution alone.
 - The matched baseline is a single capture (`172736`); a multi-capture
@@ -213,6 +258,7 @@ Follow-ups for anyone retaining a setup like this:
   / Game Mode state)
 - CPU-Z Memory tab (Gear 1 verification: MC ratio 1:1, primary timings)
 - HWInfo64 (real VDIMM via DRAM VR VOUT, VRM and CPU temps)
+- AIDA64 Cache & Memory Benchmark (DRAM Latency cold and warm)
 - TestMem5 anta777 Extreme (3-cycle quick gate)
 - PowerShell `Get-CimInstance Win32_PhysicalMemory` (DDR speed sanity; note
   `ConfiguredVoltage` reports JEDEC nominal 1.2 V, not the real VDIMM)
