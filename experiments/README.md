@@ -29,7 +29,7 @@ For the tools and methodology, see [measuring](../measuring/README.md).
 
 PR welcome. Use `exp-NNN-short-description.md`. The format is documented in
 [measuring § Naming convention](../measuring/README.md). Document failures
-and null results too — those are data.
+and null results too, those are data.
 
 ---
 

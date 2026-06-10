@@ -4,7 +4,7 @@ CS2 is CPU- and RAM-bottlenecked. Not GPU-bottlenecked.
 
 This single fact is responsible for more wasted upgrade money than anything else in
 the game. Players buy better GPUs, see no improvement, and don't understand why.
-The GPU was never the limiting factor — the CPU was.
+The GPU was never the limiting factor. The CPU was.
 
 This section explains exactly why, what to prioritize, and what the numbers actually
 look like at each tier.
@@ -25,26 +25,26 @@ Your GPU rasterizes the final frame.
 
 At competitive settings, the GPU is typically sitting at 50–70% utilization
 while the CPU is at 100%. Upgrading the GPU does nothing for FPS in this state.
-The CPU finishes its work, the GPU finishes its work, the CPU starts the next frame —
+The CPU finishes its work, the GPU finishes its work, the CPU starts the next frame,
 and the queue is empty again. The CPU is the ceiling.
 
 ---
 
-## CPU — the actual bottleneck
+## CPU: the actual bottleneck
 
 ### What CS2 actually uses
 
-CS2 is heavily single-threaded for its critical workloads — game physics, network
+CS2 is heavily single-threaded for its critical workloads: game physics, network
 processing, and the main render thread run on 1–2 cores at high priority.
 The engine has improved multi-core utilization over time, but single-thread performance
 remains the primary determinant of FPS.
 
 **Priority order for CS2 CPU performance:**
-1. **Clock speed** — boost frequency above 5.0 GHz is the single biggest driver
-2. **IPC and L3 cache** — how much work each clock cycle accomplishes; larger L3 = fewer cache misses
-3. **Core count** — relevant for background tasks and streaming, not for raw CS2 FPS
+1. **Clock speed:** boost frequency above 5.0 GHz is the single biggest driver
+2. **IPC and L3 cache:** how much work each clock cycle accomplishes; larger L3 = fewer cache misses
+3. **Core count:** relevant for background tasks and streaming, not for raw CS2 FPS
 
-### AMD — 3D V-Cache changes everything
+### AMD: 3D V-Cache changes everything
 
 AMD's X3D processors stack additional L3 cache directly on the CPU die using 3D
 packaging. In CS2, this cache advantage is decisive: the game's working set fits in
@@ -60,7 +60,7 @@ the enlarged L3, drastically reducing main memory access latency.
 The 9850X3D (released January 2026) is the current benchmark leader for CS2,
 landing roughly 5–6% above the 9800X3D in independent testing. The 9800X3D
 remains the price/performance pick if you can still find one. The X3D cache
-advantage is not marginal — it is the single largest per-frame improvement
+advantage is not marginal. It is the single largest per-frame improvement
 available from any CPU upgrade, confirmed across multiple independent benchmark
 sources.
 
@@ -75,7 +75,7 @@ in CS2 specifically.
 | Core i5-14600K | ~400–430 FPS avg at 1080p low (GPU-dependent), excellent price/performance |
 | Core i9-13900K / 14900K | High clock, but trails X3D in CS2 despite higher raw MHz |
 
-#### Intel-specific setting — modern hybrid scheduling
+#### Intel-specific setting: modern hybrid scheduling
 
 On 12th–14th gen Intel CPUs
 with P-cores and E-cores, the old advice was to disable E-cores in BIOS or pin
@@ -83,7 +83,7 @@ CS2 to P-cores only. This is now outdated. The 15% figure that gets quoted
 (originally from 3kliksphilip via Strafe) was measured on a 13900K with 8P+16E
 in an early Win11 Thread Director environment. On 14th-gen parts with fewer
 E-cores under Windows 11 24H2 with a mature Thread Director, disabling E-cores
-*reduces* average FPS in CS2 — community benchmarks on the 14600K show roughly
+*reduces* average FPS in CS2. Community benchmarks on the 14600K show roughly
 600 avg → 500 avg when E-cores are turned off.
 
 **Keep E-cores AND Hyperthreading enabled in BIOS.**
@@ -94,18 +94,18 @@ late 2024). This is a soft scheduler hint that asks Windows to prefer P-cores
 for CS2's hot threads without starving the engine of background-thread
 throughput on E-cores.
 
-**Optional — Process Lasso Core 0 exclusion (8+ P-core SKUs only):** A small
+**Optional, Process Lasso Core 0 exclusion (8+ P-core SKUs only):** A small
 additional gain comes from excluding Core 0 (not P-cores) from cs2.exe's affinity
 via Process Lasso. Core 0 carries Windows interrupt routing and timer work;
 excluding it from CS2 removes a source of frametime contention. Thour's
 measurements show roughly 2.2% average and 3.9% 1%-low improvement on a
-13900K (8P+16E). Exclude **Core 0 only** — not all E-cores, not all but the
+13900K (8P+16E). Exclude **Core 0 only**. Not all E-cores, not all but the
 P-cores.
 
 **Do NOT apply this on 6 P-core SKUs (13600K, 14600K).** A 60-second CS2 capture
 on a 14600K measured during this compendium's development showed Min FPS
 collapse from 71 to 35 and AdaptiveStd worsen 9% with Core 0 excluded, while
-Avg stayed flat. The Min collapse is the tell — with only 6 P-cores, taking
+Avg stayed flat. The Min collapse is the tell, with only 6 P-cores, taking
 one off the active set leaves CS2 short of threads for its render/main loop
 under load. The trade is "−1 Core 0 interrupts" versus "−1 P-core for the
 renderer", and on 6P SKUs the second cost dominates. See
@@ -126,12 +126,12 @@ CS2 does not care about 16 cores. It cares about how fast the first 2 are.
 ### Dual channel is mandatory
 
 Running two sticks of RAM in dual channel provides roughly double the memory
-bandwidth of a single stick. In CS2, this is not a subtle difference —
-single-channel configurations cause significant FPS drops and frame time spikes.
+bandwidth of a single stick. In CS2, this is not a subtle difference.
+Single-channel configurations cause significant FPS drops and frame time spikes.
 
 **Always run 2 sticks. Always.**
 
-### Speed matters — but how much?
+### Speed matters, but how much?
 
 RAM speed (MHz/MT/s) affects how quickly data can be fed to the CPU.
 The practical FPS impact of RAM speed in CS2:
@@ -140,7 +140,7 @@ The practical FPS impact of RAM speed in CS2:
 - Going from DDR5-4800 to DDR5-6000: meaningful, particularly for AMD AM5
 - Going from DDR5-6000 to DDR5-7200: diminishing returns, stability risk
 
-### AMD AM5 — DDR5-6000 CL30 is the sweet spot
+### AMD AM5: DDR5-6000 CL30 is the sweet spot
 
 This is one of the most specific and well-supported hardware recommendations
 in the CS2 community. Here's why DDR5-6000 CL30 specifically:
@@ -159,14 +159,14 @@ by the overclocking and benchmarking community.
 tested ICs at DDR5-6000 CL30 for AM5. Samsung B-die DDR5 kits are less common
 at this spec range and less consistent.
 
-**Kit configuration:** 2×16GB or 2×24GB. Two sticks preferred over four —
-four-stick configurations increase electrical load on the memory controller
+**Kit configuration:** 2×16GB or 2×24GB. Two sticks preferred over four.
+Four-stick configurations increase electrical load on the memory controller
 and often require running at lower speeds for stability.
 
 ### Intel (LGA1851 / Arrow Lake, Raptor Lake)
 
 DDR5-6000 CL30 is a solid baseline for Intel DDR5 platforms as well.
-Arrow Lake's memory controller is mature as of 2025/2026 — AMD-specific
+Arrow Lake's memory controller is mature as of 2025/2026. AMD-specific
 recommendations around FCLK boundaries do not apply directly, but the speed
 tier is still appropriate.
 
@@ -192,7 +192,7 @@ optimization can move. See
 [exp-004](../experiments/exp-004-fps-ceiling-memory-bound.md) for a worked
 case: a 14600K + RTX 4090 + DDR4-4000 at 1280×960 ceilings at ~232 FPS Avg
 across six very different optimization profiles, with the CPU hotthread
-stuck at 80-86 % (not 100 %) and the GPU at 25-30 % load — the canonical
+stuck at 80-86 % (not 100 %) and the GPU at 25-30 % load, the canonical
 memory-stall signature.
 
 **How to verify your gear:** HWInfo64 → Memory page → look at *Memory Controller
@@ -200,7 +200,7 @@ memory-stall signature.
 
 ### Capacity
 
-16GB is technically enough for CS2 on a per-frame basis — the game does not
+16GB is technically enough for CS2 on a per-frame basis, the game does not
 need more than 16GB to render any single frame. But CS2 has a documented
 memory leak that grows session-over-session, with users reporting commit sizes
 beyond 20GB after several back-to-back matches without an engine restart.
@@ -212,22 +212,22 @@ matches. 16GB is fine if you restart cleanly between every session. 32GB is
 also the right answer if you stream, run Discord/browser/OBS simultaneously,
 or multitask heavily. For pure single-session CS2 performance, 16GB
 dual-channel at the right speed outperforms 32GB slow single-channel in every
-meaningful metric — but "single session" is the load-bearing qualifier.
+meaningful metric, but "single session" is the load-bearing qualifier.
 
 ---
 
-## Intel Raptor Lake / Raptor Lake Refresh — stability
+## Intel Raptor Lake / Raptor Lake Refresh: stability
 
 If you own a 13th or 14th gen Intel K-SKU (13600K/13700K/13900K, 14600K/14700K/14900K),
 you need to address the Vmin Shift degradation issue. This is not optional and
-it is not exclusive to crashing systems — the fix is preventative.
+it is not exclusive to crashing systems. The fix is preventative.
 
 ### What the issue is
 
 Intel's Raptor Lake and Raptor Lake Refresh K-SKUs ship with a microcode
 defect that causes elevated voltage requests under certain transient loads.
 Over time, this degrades the silicon's minimum stable voltage (Vmin), and
-the CPU progressively loses stability — manifesting as random BSODs, game
+the CPU progressively loses stability, manifesting as random BSODs, game
 crashes, and shader-compile failures. The degradation is permanent. The
 microcode fix prevents further damage; it does not restore already-degraded
 silicon.
@@ -242,11 +242,11 @@ Intel released microcode `0x12B` in September 2024 and a further refinement
 `0x12F` in April 2025. Both are delivered via motherboard BIOS updates.
 
 1. **Update BIOS to a version that includes microcode 0x12B or later.** Check
-   your board vendor's release notes — the changelog will name the microcode
+   your board vendor's release notes. The changelog will name the microcode
    revision. 0x12F is preferred if available for your board.
 2. **Load Intel Default Settings → Performance profile** in BIOS. Do NOT use
-   the vendor's "Unlimited" / "Extreme" / "Tweaker" performance profile —
-   those override Intel's power and current limits and reintroduce the
+   the vendor's "Unlimited" / "Extreme" / "Tweaker" performance profile.
+   Those override Intel's power and current limits and reintroduce the
    conditions that cause Vmin Shift. The Performance profile honors PL1, PL2,
    and ICCMax at Intel's specified ceilings.
 3. **Verify in HWInfo64.** After applying, run HWInfo64 → Power tab. Confirm
@@ -260,13 +260,13 @@ and silicon already degraded cannot be recovered without RMA.
 
 ---
 
-## GPU — what role it actually plays
+## GPU: what role it actually plays
 
 ### CS2 is CPU-bound at competitive settings
 
 At 1080p low settings with a modern CPU, the GPU is underutilized.
 This means upgrading from an RTX 3060 to an RTX 4080 produces minimal
-FPS improvement — because the CPU was already delivering frames as fast
+FPS improvement, because the CPU was already delivering frames as fast
 as it could process them.
 
 ### FPS tiers at 1080p low (CPU not bottlenecked)
@@ -277,7 +277,7 @@ as it could process them.
 | 240+ FPS | RTX 3070 / RX 6700 XT class |
 | 300+ FPS | RTX 4070 / RX 7800 XT class |
 | 400+ FPS | RTX 4080 / RX 7900 XT class |
-| 500+ FPS | RTX 4090 — CPU becomes the new ceiling here |
+| 500+ FPS | RTX 4090, CPU becomes the new ceiling here |
 
 At 500+ FPS targets with a top-tier CPU, the GPU finally becomes a factor.
 Below that, the CPU gets there first.
@@ -293,19 +293,19 @@ Choosing a GPU for more VRAM to help CS2 is not a valid reason.
 Only if one of these is true:
 - Your GPU cannot maintain your target FPS even after CPU/RAM are optimized
 - You play at 1440p or higher and want consistent 300+ FPS
-- You want to use MSAA 4× at high refresh — that increases GPU load (8× costs
+- You want to use MSAA 4× at high refresh, that increases GPU load (8× costs
   roughly 15–18% even on top GPUs per Thour's measurements, 2×/4× is the
   pro-floor consensus)
 
 Otherwise, GPU money is better spent on CPU, RAM, or monitor for CS2 specifically.
 
-### VRR FPS cap — how to compute it
+### VRR FPS cap: how to compute it
 
 For G-Sync Compatible / FreeSync displays, your FPS cap needs to sit just
 below the panel's max refresh so the VRR window stays active and V-Sync
 never has to engage. The rule the community used in the 60–240Hz era was
 "refresh minus 3" (so 237 for 240Hz, 357 for 360Hz). That fixed-FPS
-heuristic does not scale cleanly to 360/480/540Hz panels — driver-side LFC
+heuristic does not scale cleanly to 360/480/540Hz panels. Driver-side LFC
 on G-Sync Compatible has looser overshoot control than native G-Sync
 modules, and a 3-FPS margin is too tight at high refresh.
 
@@ -339,13 +339,13 @@ spikes; a driver-side cap sidesteps that.
 
 ---
 
-## Monitor — the most important hardware decision for CS2
+## Monitor: the most important hardware decision for CS2
 
 The monitor is where all the hardware work becomes visible. A CPU that produces
 500 FPS delivers nothing extra to a 144Hz monitor. The monitor is the final
-bottleneck in the chain — and for most players, it's the most under-invested component.
+bottleneck in the chain, and for most players, it's the most under-invested component.
 
-### Refresh rate — the primary spec
+### Refresh rate: the primary spec
 
 Higher Hz = more frames displayed per second = lower display latency = fresher
 image at the moment you react. The intervals:
@@ -367,41 +367,41 @@ with the [XL2586X+ at 600Hz](https://forums.guru3d.com/threads/zowie-presents-it
 in rotation. See [Fundamentals](../fundamentals/README.md) for the full Hz
 analysis.
 
-### Panel types — what actually matters for CS2
+### Panel types: what actually matters for CS2
 
 This is where most monitor guides mislead. The answer for CS2 is not the same
 as the answer for a photo editor.
 
 **TN (Twisted Nematic)**
-- Response time: 1–2ms GtG — fastest pixel switching of any panel type
-- Color: worst — narrow viewing angles, washed-out colors
+- Response time: 1–2ms GtG, fastest pixel switching of any panel type
+- Color: worst, narrow viewing angles, washed-out colors
 - Why pros use it: raw speed, and ZOWIE's dominance (see below)
 - Verdict: technically optimal for pure response time, but color difference vs modern IPS is meaningful
 
 **IPS (In-Plane Switching)**
 - Response time: 1–4ms GtG on modern fast-IPS panels
-- Color: excellent — wide angles, accurate representation
-- Verdict: best balance for competitive CS2 — modern fast-IPS at 360Hz is within
+- Color: excellent, wide angles, accurate representation
+- Verdict: best balance for competitive CS2. Modern fast-IPS at 360Hz is within
   1–2ms of TN while providing significantly better image quality
 
 **VA (Vertical Alignment)**
 - Response time: 4–6ms GtG, and dark-scene pixel transitions are noticeably slower
 - The problem: dark areas of CS2 maps (smoke, shadow zones, tunnels) show smearing
   as pixels transition slowly. VA's slow dark-to-dark pixel transitions produce
-  measurably longer motion blur than IPS — dark transitions being significantly slower
+  measurably longer motion blur than IPS, dark transitions being significantly slower
   than bright-to-bright, a pattern confirmed across multiple display reviewers
   (Monitors Unboxed, RTINGS).
 - Verdict: **avoid for CS2.** The dark-scene smearing is a direct gameplay disadvantage.
 
 **OLED**
-- Response time: ~0.02–0.03ms GtG — effectively instant pixel switching
-- Color: best available — true blacks, perfect contrast
+- Response time: ~0.02–0.03ms GtG, effectively instant pixel switching
+- Color: best available, true blacks, perfect contrast
 - Refresh rate ceiling (2026): 480Hz QD-OLED ([LG 27GX790A](https://www.tomshardware.com/monitors/gaming-monitors/asus-world-first-oled-esports-monitor-can-hit-540hz-at-1080p-rog-strix-oled-model-among-four-fresh-offerings)),
   540Hz Tandem WOLED ([ASUS XG259QWPG Ace](https://rog.asus.com/articles/gaming-monitors/the-rog-strix-oled-xg259qwpg-ace-combines-oled-performance-and-tournament-grade-specs/),
   June 2026), 540Hz QD-OLED 1440p ([ASUS PG27UCDM](https://www.tomshardware.com/monitors/gaming-monitors/asus-world-first-oled-esports-monitor-can-hit-540hz-at-1080p-rog-strix-oled-model-among-four-fresh-offerings)).
   The 240Hz OLED ceiling no longer applies.
 - Burn-in risk: static HUD elements (radar, HP bar, crosshair) can cause burn-in with
-  extreme prolonged use — modern gaming OLEDs include pixel-shift and compensation cycles
+  extreme prolonged use. Modern gaming OLEDs include pixel-shift and compensation cycles
   that reduce but don't eliminate this risk. Documented cases exist. Players putting
   4+ hours daily into CS2 at high brightness long-term should factor this in.
 - VRR Flicker caveat: OLED gamma is calibrated for fixed refresh; under VRR the
@@ -412,12 +412,12 @@ as the answer for a photo editor.
   and approaching 600Hz Fast-TN. The case for TN over OLED in 2026 is essentially
   tournament-supply parity, not technical superiority.
 
-### GtG vs MPRT — which response time matters
+### GtG vs MPRT: which response time matters
 
 Two response time metrics appear on monitor specs. They measure different things:
 
 **GtG (Grey-to-Grey):** How long a pixel takes to switch between two grey shades.
-This is the physically meaningful metric — it directly measures how fast the display
+This is the physically meaningful metric, it directly measures how fast the display
 can change what it's showing. Lower GtG = sharper motion, less ghosting.
 
 **MPRT (Moving Picture Response Time):** Measured with a strobing backlight technique
@@ -439,7 +439,7 @@ within measurement noise (~±2ms in standardized testing).
 **What matters most:** Ensure game mode is enabled. Display modes like "cinema" or
 "vivid" often add processing that adds 10–20ms of input lag. Game mode bypasses this.
 
-### What pros actually use — and why
+### What pros actually use, and why
 
 As of 2026, ZOWIE dominates the professional CS2 scene:
 
@@ -447,7 +447,7 @@ As of 2026, ZOWIE dominates the professional CS2 scene:
 - ~90% of tracked CS2 pros use ZOWIE monitors, predominantly XL2566K (360Hz TN),
   XL2586X (540Hz Fast-TN with DyAc 2), and the [XL2586X+ at 600Hz](https://forums.guru3d.com/threads/zowie-presents-its-xl2586x-esports-monitor-with-a-staggering-600hz-refresh-rate.454896/)
   on the IEM/ESL stage rotation.
-- The panel is TN — not because TN is technically superior to modern fast-IPS or
+- The panel is TN, not because TN is technically superior to modern fast-IPS or
   Tandem WOLED at the same refresh, but because **ZOWIE is the tournament standard
   and pros train on what they play on**.
 
@@ -456,20 +456,20 @@ standardization and supply, not by a unanimous technical verdict. Modern
 fast-IPS at 360Hz and 540Hz Tandem WOLED ([ASUS XG259QWPG Ace](https://rog.asus.com/articles/gaming-monitors/the-rog-strix-oled-xg259qwpg-ace-combines-oled-performance-and-tournament-grade-specs/))
 are technically competitive with TN for response time while providing better
 image quality. The pro consensus on ZOWIE TN reflects habit, ecosystem, and
-tournament supply — not a measured technical preference.
+tournament supply, not a measured technical preference.
 
 ---
 
-## The upgrade path — priority order
+## The upgrade path: priority order
 
 If you're upgrading specifically for CS2 performance, this is the order that
 produces the most improvement per euro spent:
 
 | Priority | Upgrade | Why |
 |---|---|---|
-| 1 | **Monitor Hz** (to 240Hz minimum) | Removes the display ceiling — all other hardware improvements are invisible below your Hz |
-| 2 | **CPU** (to X3D or high-clock equivalent) | The actual bottleneck — biggest FPS gains here |
-| 3 | **RAM** (to DDR5-6000 CL30 dual channel for AM5) | Feeds the CPU — significant for X3D especially |
+| 1 | **Monitor Hz** (to 240Hz minimum) | Removes the display ceiling, all other hardware improvements are invisible below your Hz |
+| 2 | **CPU** (to X3D or high-clock equivalent) | The actual bottleneck, biggest FPS gains here |
+| 3 | **RAM** (to DDR5-6000 CL30 dual channel for AM5) | Feeds the CPU, significant for X3D especially |
 | 4 | **Monitor Hz** (240 → 360Hz) | Only meaningful after CPU/RAM are not bottlenecking |
 | 5 | **GPU** | Only if CPU/RAM are optimized and GPU is still the ceiling |
 

@@ -1,11 +1,11 @@
-# Exp 002 — HAGS on vs off on RTX 4090 + Reflex
+# Exp 002: HAGS on vs off on RTX 4090 + Reflex
 
 ## Hypothesis
 
 On Ada, NVIDIA Reflex's effectiveness is hypothesized to depend on HAGS
 for deterministic GPU-side frame submission. NVIDIA documents Reflex's
 CPU-side render-queue management and clock pinning but does **not**
-document HAGS as a requirement — the dependency is inferred from community
+document HAGS as a requirement. The dependency is inferred from community
 benchmarking, not specified in the Reflex SDK / Streamline programming
 guide. This experiment tests whether disabling HAGS damages the frametime
 tail despite Reflex remaining enabled.
@@ -64,19 +64,19 @@ key `HwSchMode` (2 = on, 1 = off). Reboot required for toggle to take effect.
 
 Notable pattern: Average dropped only 6%, but the entire low-end tail
 collapsed. P1 cut nearly in half, Min cut by two-thirds. AdaptiveStd worsened
-by 11% — exactly the chaos pattern Reflex is designed to prevent.
+by 11%, exactly the chaos pattern Reflex is designed to prevent.
 
 ## Conclusion
 
 HAGS off on RTX 40-series with Reflex active **disproportionately damages
 the frametime tail**. The Average barely moves because the CPU/memory
-bottleneck is upstream — but Reflex's ability to glue the bottom of the
+bottleneck is upstream, but Reflex's ability to glue the bottom of the
 distribution to a stable boundary disappears.
 
 This is consistent with community-observed behavior on Ada: with HAGS on,
 the driver's GPU-side scheduling can sequence Reflex's frame submission
 more deterministically. NVIDIA's Reflex SDK documentation does **not**
-list HAGS as a prerequisite — the dependency is empirical, not specified.
+list HAGS as a prerequisite. The dependency is empirical, not specified.
 Our captures support it on this hardware combo. Sources:
 [NVIDIA-RTX/Streamline ProgrammingGuideReflex](https://github.com/NVIDIA-RTX/Streamline),
 [NVIDIA Reflex developer page](https://developer.nvidia.com/performance-rendering-tools/reflex).
@@ -85,7 +85,7 @@ Our captures support it on this hardware combo. Sources:
 
 The "HAGS off for competitive games" advice is **wrong** on RTX 40 and 50
 series cards running titles with Reflex (CS2 ships Reflex). On Pascal /
-Turing it remains correct. On Ampere it's inconsistent — measure per
+Turing it remains correct. On Ampere it's inconsistent. Measure per
 driver version.
 
 This is reflected in [windows/README.md § HAGS](../windows/README.md#4-hags--hardware-accelerated-gpu-scheduling).

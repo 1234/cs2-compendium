@@ -1,6 +1,6 @@
 # Training
 
-A structured monthly training plan for CS2 — built around **HaiX's KovaaK playlists**, **Refrag routines**,
+A structured monthly training plan for CS2, built around **HaiX's KovaaK playlists**, **Refrag routines**,
 and utility practice for all 7 premier maps.
 
 HaiX developed his routine through direct research with professional players and aim coaches.
@@ -10,7 +10,7 @@ This plan adapts his system into a full monthly structure.
 
 ## What the research actually says
 
-### The pro split — and why it matters
+### The pro split, and why it matters
 
 There is a genuine, documented disagreement among the world's best players:
 
@@ -24,17 +24,17 @@ There is a genuine, documented disagreement among the world's best players:
 > than an hour of DM or aim bots."*
 
 **s1mple** (widely considered the GOAT):
-Warms up 10–20 minutes on Aim Botz before every session — AK and Deagle, taps, short
+Warms up 10–20 minutes on Aim Botz before every session: AK and Deagle, taps, short
 sprays, flicks. Then team practice, then FPL in free time.
 
 **NiKo** (widely regarded as one of the best mechanical aimers ever):
-500–1,000 kills on Aim Botz daily — but with a concrete goal each session: spray day,
+500–1,000 kills on Aim Botz daily, but with a concrete goal each session: spray day,
 one-tap day, or flick day. Crosshair must stop *exactly* on the head pixel. Starts with
 KZ to loosen wrists.
 
 **Why ZywOo and donk don't generalize:**
 Both are outliers with exceptional natural raw aim. Their approach works *because* they
-don't need to fix mechanical issues — they've been playing at the highest level since
+don't need to fix mechanical issues. They've been playing at the highest level since
 early teens. For everyone else, structured practice that targets specific weaknesses
 is the more reliable path. This is also what HaiX's research with aim coaches confirmed.
 
@@ -43,10 +43,10 @@ is the more reliable path. This is also what HaiX's research with aim coaches co
 Across Dignitas, Refrag, cs.money, 3D Aim Trainer, ProSettings, Turboboost and community
 research, the following points appear in virtually every source:
 
-- **Consistency beats intensity.** 20–30 minutes daily beats 3 hours once a week — always.
+- **Consistency beats intensity.** 20–30 minutes daily beats 3 hours once a week. Always.
   Muscle memory is built through neural repetition over time, not volume in one session.
 - **Pre-warmup ≠ deep practice.** Max 10–15 minutes. Its only purpose is activating what
-  you already have — you learn nothing new during a warm-up.
+  you already have. You learn nothing new during a warm-up.
 - **Session order is non-negotiable.** Pre-warmup → aim work → utility → ranked.
   Never jump cold into ranked.
 - **45–60 minutes is the effective ceiling** for aim training. Beyond that quality drops
@@ -72,7 +72,7 @@ research, the following points appear in virtually every source:
 
 ## Session structure
 
-Every day follows this order. Timing is flexible — it does not have to be morning.
+Every day follows this order. Timing is flexible. It does not have to be morning.
 Do it whenever you sit down to play.
 
 ```
@@ -84,11 +84,11 @@ Do it whenever you sit down to play.
 ```
 
 **Why this order:**
-- In-Game Fix first because it directly simulates CS2 mechanics — better activation than generic aim training
+- In-Game Fix first because it directly simulates CS2 mechanics: better activation than generic aim training
 - Refrag second because it's in-engine and bridges aim trainer → real game
 - Utility third so it's fresh in your head before matches
-- KovaaK deep session in the evening because by then you know what broke down in matches —
-  you can train with intent, not just grind
+- KovaaK deep session in the evening because by then you know what broke down in matches.
+  You can train with intent, not just grind
 
 **Session length by level:**
 
@@ -103,7 +103,7 @@ Do it whenever you sit down to play.
 
 ## 4-Week Monthly Plan
 
-The month is built on progressive overload — same principle as gym training.
+The month is built on progressive overload. Same principle as gym training.
 Each week adds a layer. The KovaaK playlists are deliberately sequenced
 from foundational mechanics (Week 1 General) to more demanding scenarios (Micros Week 3).
 
@@ -117,18 +117,18 @@ from foundational mechanics (Week 1 General) to more demanding scenarios (Micros
 | Thursday | Spray lighter | Spray (easier) |
 | Friday | Aim | Aim |
 | Saturday | Activation only | Warm-up |
-| Sunday | Rest — watch demos | — |
+| Sunday | Rest, watch demos | - |
 
 *Spray on Tuesday and Thursday because your arms are warmer mid-week.
-Easier spray on Thursday because fatigue accumulates — don't grind against a tired body.
-Saturday is low intensity by design — you played all week, let the motor pathways consolidate.*
+Easier spray on Thursday because fatigue accumulates. Don't grind against a tired body.
+Saturday is low intensity by design. You played all week, let the motor pathways consolidate.*
 
 ---
 
-### Week 1 — Foundation
+### Week 1: Foundation
 
 **KovaaK:** General Week 1 (`KovaaKsCrossfiringEntryChoke`) + Micros Week 1 (`KovaaKsUltingMahoganyChallenge`)
-**Utility focus:** Mirage (highest premier pick rate — most return on investment)
+**Utility focus:** Mirage (highest premier pick rate, most return on investment)
 **Refrag:** Standard rotation above
 
 **Goal:** Build the baseline. Don't rush. Week 1 is about establishing the habit and neural
@@ -141,21 +141,21 @@ patterns, not performance.
 | Wednesday | In-Game Fix | Aim | Mirage: Top mid smoke + B apps smoke | General W1 |
 | Thursday | In-Game Fix | Spray (easier) | Mirage: Market smoke + Van smoke | Micros W1 |
 | Friday | In-Game Fix | Aim | Mirage: Review all 8 smokes from memory | General W1 |
-| Saturday | In-Game Fix | Warm-up | Mirage: 2 weakest smokes from Friday | — |
-| Sunday | — | — | Watch 1 pro demo on Mirage | — |
+| Saturday | In-Game Fix | Warm-up | Mirage: 2 weakest smokes from Friday | - |
+| Sunday | - | - | Watch 1 pro demo on Mirage | - |
 
 **Why Mirage first:** Highest premier pick rate, most resources, and it teaches core CS2
 spatial reasoning (mid control, site splits, crossfire setups) that transfers to every map.
 
 ---
 
-### Week 2 — Building
+### Week 2: Building
 
 **KovaaK:** General Week 2 (`KovaaKsGlidingAlmondClass`) + Micros Week 1 (`KovaaKsUltingMahoganyChallenge`)
 **Utility focus:** Inferno + start Dust2
 **Refrag:** Standard rotation
 
-**Goal:** General Week 2 introduces more demanding scenarios than Week 1 — same micros
+**Goal:** General Week 2 introduces more demanding scenarios than Week 1, same micros
 playlist to reinforce the foundation before moving to Micros Week 2. Two maps this week
 because Dust2 is the simplest utility map in the pool.
 
@@ -166,22 +166,22 @@ because Dust2 is the simplest utility map in the pool.
 | Wednesday | In-Game Fix | Aim | Inferno: CT smoke + coffins smoke | General W2 |
 | Thursday | In-Game Fix | Spray (easier) | Dust2: Xbox smoke + long doors smoke | Micros W1 |
 | Friday | In-Game Fix | Aim | Dust2: B doors smoke + CT cross smoke | General W2 |
-| Saturday | In-Game Fix | Warm-up | Review: 2 weakest from Inferno or Dust2 | — |
-| Sunday | — | — | Watch 1 pro demo on Inferno | — |
+| Saturday | In-Game Fix | Warm-up | Review: 2 weakest from Inferno or Dust2 | - |
+| Sunday | - | - | Watch 1 pro demo on Inferno | - |
 
 **Why Inferno second:** Banana control is one of the most impactful mechanical patterns in
-CS2 — learning it early pays dividends. Coffins + Arch are foundational to every Inferno execute.
+CS2. Learning it early pays dividends. Coffins + Arch are foundational to every Inferno execute.
 
 ---
 
-### Week 3 — Intensity
+### Week 3: Intensity
 
 **KovaaK:** General Week 4 (`KovaaKsImpactingBraveEngine`) + Micros Week 2 (`KovaaKsClickingNavyblueClutch`)
 **Utility focus:** Nuke + Anubis
 **Refrag:** Standard rotation
 
 **Goal:** Hardest KovaaK week. General Week 4 and Micros Week 2 are more mechanically
-demanding. Nuke has the most complex utility in the pool — pair it with Anubis which is
+demanding. Nuke has the most complex utility in the pool. Pair it with Anubis, which is
 more forgiving.
 
 | Day | Pre-warmup | Refrag | Utility | Evening KovaaK |
@@ -191,8 +191,8 @@ more forgiving.
 | Wednesday | In-Game Fix | Aim | Nuke: Squeaky molotov + ramp smoke | General W4 |
 | Thursday | In-Game Fix | Spray (easier) | Anubis: Mid smoke + canal smoke | Micros W2 |
 | Friday | In-Game Fix | Aim | Anubis: E-box smoke + A-site control smoke | General W4 |
-| Saturday | In-Game Fix | Warm-up | Review: Nuke smokes (hardest ones) | — |
-| Sunday | — | — | Watch 1 pro demo on Nuke | — |
+| Saturday | In-Game Fix | Warm-up | Review: Nuke smokes (hardest ones) | - |
+| Sunday | - | - | Watch 1 pro demo on Nuke | - |
 
 **Why Nuke in week 3 and not earlier:** Nuke has vertical multi-level utility that is
 genuinely hard to learn. Attempting it in week 1 or 2 before the habit is established
@@ -200,7 +200,7 @@ leads to frustration and skipping. By week 3 the routine is automatic.
 
 ---
 
-### Week 4 — Consolidation
+### Week 4: Consolidation
 
 **KovaaK:** Micros Week 3 (`KovaaKsTeleportingEggplantFlashbang`) + General Week 2 (repeat for reinforcement)
 **Utility focus:** Ancient + Overpass
@@ -217,8 +217,8 @@ two remaining maps.
 | Wednesday | In-Game Fix | Aim | Overpass: Short smoke + connector smoke | Micros W3 |
 | Thursday | In-Game Fix | Spray (easier) | Overpass: Bathrooms molotov + long A smoke | General W2 |
 | Friday | In-Game Fix | Aim | Full review: 1 smoke per map × 7 maps | Micros W3 |
-| Saturday | In-Game Fix | Warm-up | Any 3 smokes you felt weakest on this month | — |
-| Sunday | — | — | Demo review + plan next month | — |
+| Saturday | In-Game Fix | Warm-up | Any 3 smokes you felt weakest on this month | - |
+| Sunday | - | - | Demo review + plan next month | - |
 
 ---
 
@@ -230,21 +230,21 @@ After completing all 4 weeks:
 - Gradually move toward Refrag Spray (normal) on Thursdays instead of easier
 
 The KovaaK General playlists (W1 → W2 → W4) form a natural progressive arc.
-Once you've run through all three, restart from W1 — you will notice improvement in
+Once you've run through all three, restart from W1. You will notice improvement in
 scenarios that felt impossible in month 1.
 
 ---
 
-## KZ & Bhop — Movement training and long session filler
+## KZ & Bhop: Movement training and long session filler
 
 KZ and bhop are the most underrated training tools in CS2.
-Almost no content creators cover them seriously — yet two of the best players alive use them.
+Almost no content creators cover them seriously, yet two of the best players alive use them.
 
 ZywOo (world #1 multiple years, direct quote):
 > *"I play surf, KZ, or just play for fun."*
 
 NiKo starts every session with KZ specifically to loosen his wrists before aim training.
-These are the only two pros with verified, direct statements — there are no other confirmed
+These are the only two pros with verified, direct statements. There are no other confirmed
 quotes worth citing. The broader pattern of high-level players using movement modes privately
 exists anecdotally in the community, but not in documented primary sources.
 
@@ -259,11 +259,11 @@ exists anecdotally in the community, but not in documented primary sources.
 KZ and bhop are the priority for competitive improvement. Surf is more recreational
 but still builds foundational movement sense.
 
-### When to use it — the long session problem
+### When to use it: the long session problem
 
 Not every day allows for structured training. Sometimes you have more time than usual.
 Sometimes you've played all your ranked games, done your KovaaK session, and still have
-energy — but you're mentally done with competitive.
+energy, but you're mentally done with competitive.
 
 **This is exactly when KZ and bhop are the right choice.**
 
@@ -281,16 +281,16 @@ Rest day but want to stay active → 15–20 min KZ only, no ranked, no KovaaK
 **Starting point:** kz_dejavu
 **Long-term goal:** kz_variety_fix (once dejavu feels routine)
 
-→ [Full KZ & bhop guide — map progression, tier system, competitive breakdown](kz/README.md)
+→ [Full KZ & bhop guide: map progression, tier system, competitive breakdown](kz/README.md)
 
 ---
 
 ## Routines
 
-- [KovaaK Playlists](kovaak/README.md) — full scenario lists per playlist
-- [Refrag Routines](refrag/README.md) — links to all 4 routines
-- [Utility](utility/README.md) — essential smokes, flashes and molotovs per map
-- [KZ Movement](kz/README.md) — map progression, competitive benefits, when to use it
+- [KovaaK Playlists](kovaak/README.md): full scenario lists per playlist
+- [Refrag Routines](refrag/README.md): links to all 4 routines
+- [Utility](utility/README.md): essential smokes, flashes and molotovs per map
+- [KZ Movement](kz/README.md): map progression, competitive benefits, when to use it
 
 ---
 

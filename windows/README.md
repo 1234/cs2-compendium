@@ -7,16 +7,16 @@ The order below reflects priority. Start at the top.
 
 ---
 
-## 1. Mouse — Enhanced Pointer Precision
+## 1. Mouse: Enhanced Pointer Precision
 
 **Where:** Settings → Bluetooth & devices → Mouse → Additional mouse settings → Pointer Options  
 **Setting:** Uncheck *Enhance pointer precision*
 
 This is Windows mouse acceleration. When it's on, moving the mouse fast covers more
-distance than moving it slow — the cursor speed is non-linear.
+distance than moving it slow. The cursor speed is non-linear.
 
 In CS2 with raw input enabled (`m_rawinput 1`), Windows mouse settings are bypassed
-for in-game movement. But Enhanced Pointer Precision still affects every other context —
+for in-game movement. But Enhanced Pointer Precision still affects every other context:
 the Windows desktop, the buy menu, the console, the scoreboard. And if raw input is
 ever off, or breaks silently, you're training on an accelerated input without knowing it.
 
@@ -24,17 +24,17 @@ Turn it off system-wide. There is no argument for keeping it on.
 
 **Pointer speed:** Set to 6/11 (the middle notch). At 6/11 with no acceleration,
 Windows applies a 1:1 linear mapping with no multiplier. Any other setting adds a
-multiplier on top of your DPI — even if acceleration is off.
+multiplier on top of your DPI, even if acceleration is off.
 
 **What does NOT affect your shooting:** Double-click speed has no effect on CS2 or any game
-using raw input. → [Peripherals — Myths & what actually affects click registration](../peripherals/README.md)
+using raw input. → [Peripherals: Myths & what actually affects click registration](../peripherals/README.md)
 
 ---
 
-## 2. Keyboard — Repeat Delay and Repeat Rate
+## 2. Keyboard: Repeat Delay and Repeat Rate
 
 **Where:** Control Panel → Keyboard → Speed tab  
-*(Must use legacy Control Panel — Windows Settings does not expose this)*
+*(Must use legacy Control Panel, Windows Settings does not expose this)*
 
 | Setting | Value |
 |---|---|
@@ -50,14 +50,14 @@ it starts repeating the input, then fires it repeatedly at *Repeat Rate*.
 
 **What this costs you in CS2:**
 
-- **Buy menu:** Holding a buy key at default delay feels sluggish — you have to wait
+- **Buy menu:** Holding a buy key at default delay feels sluggish. You have to wait
   almost half a second before the input repeats. At fast rate, buys feel instant.
-- **Console:** Navigating command history, scrolling, editing — all faster.
+- **Console:** Navigating command history, scrolling, editing, all faster.
 - **Grenade cycling:** Any bind that uses key-hold logic responds faster.
 - **Strafing corrections:** Any rapid directional input benefits from a tighter response curve.
 
 This setting costs players real time every session and almost nobody talks about it.
-Set it once, test by holding a key in Notepad — it should start repeating almost instantly
+Set it once, test by holding a key in Notepad. It should start repeating almost instantly
 and fire rapidly without gaps.
 
 ---
@@ -67,11 +67,11 @@ and fire rapidly without gaps.
 **Where:** Control Panel → Power Options  
 *(Or search "Power plan" in Start)*
 
-**Setting:** High Performance — or Ultimate Performance (see below)
+**Setting:** High Performance, or Ultimate Performance (see below)
 
 Windows Balanced power plan throttles the CPU when it's not under heavy load, then ramps
 it back up on demand. This sounds fine in theory. In practice it causes inconsistent frame
-times — the CPU is not at full speed when the first few frames of a burst request it to be.
+times. The CPU is not at full speed when the first few frames of a burst request it to be.
 
 For a dedicated gaming machine, there is no reason to use Balanced.
 
@@ -88,12 +88,12 @@ After running this, it appears in Power Options. Select it and leave it.
 
 **AMD CPUs:** Use AMD Ryzen High Performance or AMD's own balanced plan instead of
 Ultimate Performance. AMD's power management is more tightly integrated with Ryzen's
-boost behavior — Microsoft's Ultimate Performance plan can interfere with it.
+boost behavior. Microsoft's Ultimate Performance plan can interfere with it.
 Intel CPUs: Ultimate Performance is fine.
 
 ---
 
-## 4. HAGS — Hardware-Accelerated GPU Scheduling
+## 4. HAGS: Hardware-Accelerated GPU Scheduling
 
 **Where:** Settings → System → Display → Graphics → Change default graphics settings  
 **Setting:** Off on Pascal/Turing (10/20-series). Leave On on Ada (RTX 40-series) and Blackwell (RTX 50-series) if you use Reflex.
@@ -113,40 +113,40 @@ variance gets worse in CS2.
 
 **On Ampere (RTX 30-series):** Test both. The hardware supports HAGS but the gain is
 inconsistent depending on driver version. Run a baseline with it off, then on. Use
-CapFrameX or HWInfo64 to compare frame times — not just average FPS.
+CapFrameX or HWInfo64 to compare frame times, not just average FPS.
 
 The RTX 40-series case is documented empirically in
 [exp-002](../experiments/exp-002-hags-rtx40-reflex.md): turning HAGS off on
 an RTX 4090 with Reflex active dropped P1-Low by 43 %, Min by 65 %, and lifted
-AdaptiveStd 11 %, while Average only fell 6 % — exactly the tail-collapse
+AdaptiveStd 11 %, while Average only fell 6 %, exactly the tail-collapse
 pattern you'd expect when Reflex loses its lowest-latency pacing path.
 
 ---
 
-## 5. NVIDIA App — 3D Settings for CS2
+## 5. NVIDIA App: 3D Settings for CS2
 
 **Where:** NVIDIA App → Graphics → Program Settings → Counter-Strike 2  
 (For display-level settings like G-Sync, use NVIDIA App → System → Display.)
 
 NVIDIA retired the Classic NVIDIA Control Panel with Game Ready driver 610.47
-(May 2026). On a clean install of any recent driver, only the NVIDIA App exists —
-the right-click desktop entry is gone. The setting names below are unchanged from
+(May 2026). On a clean install of any recent driver, only the NVIDIA App exists.
+The right-click desktop entry is gone. The setting names below are unchanged from
 the old Control Panel, only the click path has moved.
 
-Per-program settings take priority over global — set them under Counter-Strike 2's
+Per-program settings take priority over global. Set them under Counter-Strike 2's
 entry in Program Settings so other applications stay unaffected. If the game does
 not appear in the list, click *Add* and browse to `cs2.exe`.
 
 | Setting | Value | Why |
 |---|---|---|
-| Low Latency Mode | Ultra | Reduces pre-rendered frames in the driver queue — lower input lag |
+| Low Latency Mode | Ultra | Reduces pre-rendered frames in the driver queue, lower input lag |
 | Power Management Mode | Prefer Maximum Performance | Forces GPU to stay at full clock, not throttle while waiting for frames |
-| Vertical Sync | **On** on a G-Sync Compatible monitor with an FPS cap below refresh. **Off** on a fixed-refresh (non-VRR) monitor. | On a G-Sync window with a sub-refresh cap, NVCP V-Sync never engages — it only acts as a tearing safety net at the refresh ceiling. On a non-VRR display it adds blocking latency. |
+| Vertical Sync | **On** on a G-Sync Compatible monitor with an FPS cap below refresh. **Off** on a fixed-refresh (non-VRR) monitor. | On a G-Sync window with a sub-refresh cap, NVCP V-Sync never engages. It only acts as a tearing safety net at the refresh ceiling. On a non-VRR display it adds blocking latency. |
 | Texture Filtering – Quality | High Performance | Reduces GPU texture filtering work, minimal visual difference at CS2 distances |
-| Threaded Optimization | Auto | Leave at Auto — forcing On or Off can cause issues depending on driver version |
+| Threaded Optimization | Auto | Leave at Auto. Forcing On or Off can cause issues depending on driver version |
 | Max Frame Rate | Set to ~3% below refresh on G-Sync Compatible; Off on fixed-refresh | Driver-side cap is more consistent than `fps_max` in CS2, which has documented frametime interactions with the Reflex SDK. |
 
-#### VSync note — the canonical G-Sync Compatible recipe
+#### VSync note: the canonical G-Sync Compatible recipe
 
 If you have a VRR display
 (G-Sync Compatible, FreeSync over DisplayPort/HDMI), the configuration that gives
@@ -161,7 +161,7 @@ This is the BlurBusters G-Sync 101 recipe, mirrored in NVIDIA's System Latency
 Optimization Guide and confirmed by Valve's own in-game popup added in June 2024.
 The math: on a 240Hz panel, cap at ~232. On a 360Hz panel, cap at ~349. On a 480Hz
 panel, cap at ~465. The exact 3% offset keeps the framerate inside the VRR window
-so V-Sync's blocking behavior never triggers — it only catches a frame at the
+so V-Sync's blocking behavior never triggers. It only catches a frame at the
 refresh ceiling, preventing the tear.
 
 **Where to set the cap:** NVIDIA App's Max Frame Rate is more reliable than CS2's
@@ -172,7 +172,7 @@ and doesn't fight Reflex.
 **On a fixed-refresh (non-VRR) monitor:** Turn NVIDIA App V-Sync **Off**, in-game
 V-Sync **Off**, and leave `fps_max` uncapped (or set well above refresh). You'll see
 tearing. That's the correct trade for the lowest possible latency on a non-VRR panel.
-Do not enable V-Sync to hide tearing — the latency cost is real and measurable.
+Do not enable V-Sync to hide tearing. The latency cost is real and measurable.
 
 | Display type | NVIDIA App V-Sync | In-game V-Sync | Reflex | Frame cap |
 |---|---|---|---|---|
@@ -185,7 +185,7 @@ Do not enable V-Sync to hide tearing — the latency cost is real and measurable
 *When VRR inverts* note below explain why the VRR row stops being
 the lowest-latency / smoothest answer.*
 
-#### When VRR inverts — FPS well below refresh
+#### When VRR inverts: FPS well below refresh
 
 The G-Sync Compatible recipe
 assumes your FPS lives near refresh. If your sustained FPS is well below
@@ -227,20 +227,20 @@ For CS2: disable it. You want exclusive fullscreen when the game requests it.
 
 These have smaller impact than the above but are worth doing once.
 
-### Visual Effects — Adjust for best performance
+### Visual Effects: Adjust for best performance
 
 **Where:** Search "Adjust the appearance and performance of Windows" in Start  
 **Setting:** Select *Adjust for best performance*, then manually re-enable *Smooth edges of screen fonts*
 (without this, text rendering looks broken)
 
 This disables Windows animations, shadows, and transparency effects. CPU and GPU
-cycles freed from rendering desktop animations are trivial in isolation — but they
+cycles freed from rendering desktop animations are trivial in isolation, but they
 add up, and the consistency gain is real.
 
 ### Xbox Game Bar and background recording
 
-**Where:** Settings → Gaming → Xbox Game Bar — **Off**  
-**Where:** Settings → Gaming → Captures → Background recording — **Off**
+**Where:** Settings → Gaming → Xbox Game Bar: **Off**  
+**Where:** Settings → Gaming → Captures → Background recording: **Off**
 
 Game Bar overlays and background recording consume CPU and RAM even when not actively
 recording. There is no reason to have this on if you're not using it.
@@ -276,7 +276,7 @@ This is the single biggest Windows-side FPS gain available in CS2 from a single 
 Virtualization-Based Security (VBS) and its child feature Memory Integrity (HVCI)
 run parts of Windows inside a Hyper-V container so that even kernel-mode malware
 cannot tamper with critical code. The security benefit is real. The performance
-cost in CPU-bound games is also real — Tom's Hardware measured roughly an 8%
+cost in CPU-bound games is also real. Tom's Hardware measured roughly an 8%
 gaming penalty with VBS enabled, and CS2 is heavily CPU-bound on competitive
 settings, so the hit lands hard.
 
@@ -313,7 +313,7 @@ Game Mode, Reflex, none of which depend on VBS.
 
 ---
 
-## Summary — what to do in order
+## Summary: what to do in order
 
 | Priority | Setting | Where |
 |---|---|---|
@@ -325,7 +325,7 @@ Game Mode, Reflex, none of which depend on VBS.
 | 6 | Disable fullscreen optimizations on cs2.exe | cs2.exe → Properties → Compatibility |
 | 7 | Visual effects: adjust for performance | System Properties → Advanced |
 | 7 | Xbox Game Bar off, background recording off | Settings → Gaming |
-| 7 | Startup programs — audit and trim | Task Manager → Startup |
+| 7 | Startup programs: audit and trim | Task Manager → Startup |
 | 8 | Memory Integrity / VBS off (verify with `msinfo32`) | Windows Security → Device security |
 
 ---

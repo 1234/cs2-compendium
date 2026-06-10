@@ -183,7 +183,7 @@ deathmatch scenario.
 The memory subsystem itself did move measurably: cold-cache AIDA latency
 dropped to 59.1 ns from an informal pre-experiment Auto / G2 reading of
 ~62-65 ns (3-6 ns improvement). The CS2 FPS-level signal of +1.6% Average is
-therefore not "the tuning did nothing" — it is "the rig converted only a small
+therefore not "the tuning did nothing", it is "the rig converted only a small
 share of the memory-subsystem improvement into game Average FPS." That is the
 honest signature of a workload that is memory-latency-sensitive at the margin,
 not memory-latency-bound at the load-bearing degree exp-004 implied.

@@ -1,7 +1,7 @@
 # Contributing to CS2 Compendium
 
 First: thank you. This project only gets better through people who find something
-missing, wrong, or incomplete — and do something about it.
+missing, wrong, or incomplete, and do something about it.
 
 ---
 
@@ -44,7 +44,7 @@ If something is incorrect, outdated, or misleading:
 
 ### Updating outdated sections
 
-CS2 is updated regularly — settings change, maps change, the meta changes.
+CS2 is updated regularly: settings change, maps change, the meta changes.
 If a section becomes outdated after a patch:
 
 1. Open an Issue tagged `outdated` describing what changed
@@ -54,7 +54,7 @@ If a section becomes outdated after a patch:
 
 ## Writing style
 
-- **Explain the why.** Don't just say "set X to Y" — explain what happens if you don't.
+- **Explain the why.** Don't just say "set X to Y." Explain what happens if you don't.
 - **Be honest about disagreement.** If pros, coaches or the community disagree on something,
   say so. Don't pretend there's always one right answer.
 - **Primary sources over summaries.** If you're citing a pro's approach, link the interview.
@@ -68,7 +68,7 @@ If a section becomes outdated after a patch:
 ## Tone
 
 Direct, honest, depth-first. Not dumbed down, not condescending.
-If something is genuinely hard to understand, explain it better — don't simplify it away.
+If something is genuinely hard to understand, explain it better. Don't simplify it away.
 
 ---
 

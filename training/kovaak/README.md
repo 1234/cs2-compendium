@@ -41,7 +41,7 @@ Code: `KovaaKsGlidingAlmondClass`
 ### HaiX Week 4 General
 Code: `KovaaKsImpactingBraveEngine`
 
-> Note: Week 3 General does not appear to exist — playlist jumps from week 2 to week 4.
+> Note: Week 3 General does not appear to exist, playlist jumps from week 2 to week 4.
 
 | Scenario | Rounds |
 |---|---|

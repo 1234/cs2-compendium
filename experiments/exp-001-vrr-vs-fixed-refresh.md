@@ -1,4 +1,4 @@
-# Exp 001 — VRR vs fixed refresh when FPS << refresh
+# Exp 001: VRR vs fixed refresh when FPS << refresh
 
 ## Hypothesis
 
@@ -19,7 +19,7 @@ VRR + sub-refresh cap when the FPS-to-refresh ratio is below ~0.6.
 | RAM | 32 GB DDR4-4000 CL18 (G.Skill F4-4000C18-16GTZR), XMP active |
 | Motherboard | MSI PRO B760M-P DDR4 |
 | OS | Windows 11 Pro Build 26200 (24H2) |
-| Primary monitor | ASUS PG27AQWP-W — 27" 1440p WOLED, 540Hz, G-Sync Compatible, DisplayPort |
+| Primary monitor | ASUS PG27AQWP-W, 27" 1440p WOLED, 540Hz, G-Sync Compatible, DisplayPort |
 | Game | Counter-Strike 2 |
 | Resolution | 1280×960 (4:3 stretched) |
 | Scene | 60-second deathmatch capture, consistent action level |
@@ -75,13 +75,13 @@ Two compounding effects:
    gamma is calibrated for a fixed refresh rate (typically the panel's
    native max). Under VRR the refresh varies, which changes subpixel
    charging time and deviates from that calibrated gamma curve. The
-   visible result is brightness and gamma drift — worst in dark UI areas
+   visible result is brightness and gamma drift, worst in dark UI areas
    and worst when refresh swings widely. Sources: TFTCentral OLED VRR
    flicker testing; RTINGS VRR flicker research.
 2. **G-Sync Compatible LFC behavior at low FPS.** When FPS drops below the
    panel's VRR floor (spec: 48Hz on this monitor; actual LFC engagement
    on G-Sync Compatible OLEDs is driver-enforced and sometimes higher
-   than the spec — TFTCentral has documented engagement at ~60Hz on
+   than the spec; TFTCentral has documented engagement at ~60Hz on
    sister panels to suppress flicker), the driver's Low Framerate
    Compensation kicks in with frame-doubling. With Min dropping to 42 FPS,
    this engaged on the deepest dips and added pacing chaos.
