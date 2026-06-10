@@ -193,3 +193,18 @@ No affiliate links. No sponsored recommendations. Primary sources where possible
 - Utility: Yprac, csnades.gg, cs2hype.com, Refrag guides
 - KZ/movement: cybershoke.net, refrag.gg, xplay.gg, houseofclimb.com
 - Maintained by **spnk**
+
+---
+
+## Tip jar
+
+If any of this saved you a weekend of guessing, you can send a skin.
+I love skins — graffiti, sticker, cheap case skin, anything counts.
+
+Tradelink: <https://steamcommunity.com/tradeoffer/new/?partner=29765887&token=PXnLO_ha>
+
+Real link only — if anyone DMs you claiming to be me with a different
+link, it isn't.
+
+The compendium stays the same either way. No tiers, no perks, no
+priority issues — there's nothing to unlock.
