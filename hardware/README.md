@@ -182,7 +182,10 @@ DDR4-3733, and drops to Gear 2 (1:2 ratio) above it. Gear 2 halves
 the memory controller frequency relative to the DIMMs, which adds latency that
 the extra MT/s rarely recovers. DDR4-3600 in Gear 1 typically beats DDR4-4000
 in Gear 2 by 2–4% in CS2 FPS. If you bought a DDR4-4000 XMP kit, run it at
-3600 in Gear 1 rather than at rated speed in Gear 2.
+3600 in Gear 1 rather than at rated speed in Gear 2. One worked case on a
+14600K + B760 measured about 1.6% Average (gear plus tightened timings
+combined), at or just below the low end of that range; see
+[exp-005](../experiments/exp-005-ddr4-3600-gear1.md).
 
 The cost of Gear 2 shows up as a hard FPS ceiling that no GPU / driver / cap
 optimization can move. See

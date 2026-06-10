@@ -126,7 +126,10 @@ Two paths:
 1. **Memory tuning to Gear 1** — drop XMP, manually set DDR4-3600
    (or 3733) with CL16-19-19-39 timings, force IMC into Gear 1.
    Stability test with TestMem5 (anta777 extreme profile) for 1-2 h
-   minimum. Expected gain: 5-10% FPS in CS2. Not recommended during
+   minimum. Expected gain was estimated at 5-10% FPS in CS2, but
+   [exp-005](exp-005-ddr4-3600-gear1.md) tested this change and measured only
+   ~1.6% Average on this rig (gear plus tightened timings combined), so treat
+   5-10% as an optimistic upper bound. Not recommended during
    a post-BSOD observation window — add only one variable at a time.
 2. **CPU upgrade to an X3D part** — the 96 MB L3 V-Cache on a 9800X3D /
    9850X3D dramatically reduces L3-miss frequency for the CS2 working

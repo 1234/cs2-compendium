@@ -21,6 +21,7 @@ For the tools and methodology, see [measuring](../measuring/README.md).
 | 002 | [HAGS on vs off on RTX 4090 + Reflex](exp-002-hags-rtx40-reflex.md) | HAGS architecture caveat | [windows § HAGS](../windows/README.md#4-hags--hardware-accelerated-gpu-scheduling) |
 | 003 | [Process Lasso Core-0 exclude on 6 P-core SKU](exp-003-process-lasso-6p-core.md) | Intel hybrid affinity | [hardware § Intel-specific setting](../hardware/README.md#intel-specific-setting--modern-hybrid-scheduling) |
 | 004 | [CS2 FPS ceiling on 14600K + DDR4-4000 (Gear 2)](exp-004-fps-ceiling-memory-bound.md) | Memory bottleneck pattern | [hardware § DDR4 Gear 1 vs Gear 2](../hardware/README.md#ddr4-gear-1-vs-gear-2) |
+| 005 | [DDR4-3600 Gear 1 vs DDR4-4000 Gear 2 on 14600K (CS2)](exp-005-ddr4-3600-gear1.md) | DDR4 gear tuning / null result | [hardware § DDR4 Gear 1 vs Gear 2](../hardware/README.md#ddr4-gear-1-vs-gear-2) |
 
 ---
 
