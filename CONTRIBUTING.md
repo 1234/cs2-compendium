@@ -84,3 +84,11 @@ Open an Issue with the label that fits:
 | `missing` | Something important that should be covered |
 | `unclear` | Something that exists but is confusing |
 | `update-request` | New content you'd like to see but can't contribute yourself |
+
+---
+
+## Licensing of contributions
+
+By submitting a contribution you agree to license it under the same terms as the
+project: documentation and content under CC BY-SA 4.0, code and config under MIT
+(see [LICENSE](LICENSE) and [LICENSE-CODE](LICENSE-CODE)).

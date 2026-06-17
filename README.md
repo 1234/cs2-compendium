@@ -252,6 +252,26 @@ No affiliate links. No sponsored recommendations. Primary sources where possible
 
 ---
 
+## License
+
+Two licenses, one for words and one for code:
+
+- **Documentation and content** (all Markdown, text, original diagrams and the
+  guide images): [Creative Commons Attribution-ShareAlike 4.0 International](LICENSE)
+  (CC BY-SA 4.0). Share and adapt freely, including commercially, as long as you
+  credit this project and keep derivatives under the same license.
+- **Code and config** (`settings/autoexec.cfg` and any scripts): [MIT](LICENSE-CODE).
+  Copy and reuse freely; just keep the copyright notice.
+
+**Unofficial fan project.** Not affiliated with, endorsed by, or sponsored by
+Valve Corporation. Counter-Strike, CS2 and related marks are trademarks of Valve.
+In-game screenshots and assets remain Valve's property and are used for
+non-commercial, educational fan content under Valve's IP policy. The CC BY-SA
+license covers only the original contributions here (text, structure, annotations,
+layout), not Valve's underlying game assets.
+
+---
+
 ## Tip jar
 
 If this saved you a weekend of guessing, you can send me a skin.
