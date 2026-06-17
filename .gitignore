@@ -13,3 +13,9 @@ desktop.ini
 # Temp / build
 *.tmp
 *.log
+
+# CS2 utility-guide builder is local-only tooling: the whole folder (script,
+# README, configs, source captures, generated previews) is gitignored and never
+# pushed. Only the final exported guide image is committed, in the compendium
+# content tree (e.g. training/utility/mirage/).
+training/utility/guide-builder/
