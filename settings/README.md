@@ -241,6 +241,18 @@ players find less visually intrusive. 0.8 is a slight reduction from the default
 `cl_radar_square_always 0`: sets the radar to round shape (0) instead of square (1).
 Round is the default appearance. Personal preference only. No gameplay difference.
 
+`cl_radar_square_with_scoreboard 1`: hold **Tab** and the radar expands into a large
+square that shows the whole map. This is more than cosmetic. It is how you read "free
+information" at a glance, and it is what pros mean when they say they use the radar to
+tell whether someone is in or behind a smoke. The radar shows a red dot for any enemy
+that *any* teammate can see, from any angle. A smoke that blocks your view does not block
+a teammate's view from somewhere else, so an enemy who is "in the smoke" for you can still
+light up on the radar. Sound does the same: an enemy taking a step or firing near a
+teammate flashes their exact position for a moment, smoke or not, and a lost contact leaves
+a fading dot or question mark at the last known spot. Tapping Tab pulls the entire map up
+so you can read all of it at once. Pair it with `cl_radar_square_always 0` so the radar is
+round during play and only goes full square while you hold Tab.
+
 ---
 
 **Sound**
