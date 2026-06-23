@@ -33,14 +33,18 @@ Learn in this order. It reflects map pick rate and utility complexity:
 One of the most utility-dependent maps in the pool. Mid control unlocks both sites.
 Learn T-side first. It's more impactful at most rank levels.
 
+**→ [Visual lineup guides for Mirage](mirage/README.md):** step-by-step images for the
+Window insta smokes and the Palace Alley one-spot A smokes (Jungle, Top Stairs, CT).
+
 ### Must-know smokes (T-side)
 
 | Name | Purpose |
 |---|---|
 | Window smoke | Blocks the most common mid AWP position, enables safe catwalk and mid control |
 | Connector smoke | Cuts CT rotation from mid to A site during A executes |
-| Jungle smoke | Blocks jungle during A execute, combined with CT smoke covers full site entry |
-| CT smoke | Closes off CT spawn peek during A site takes |
+| Jungle smoke | Takes the Jungle and Connector sightlines onto A during the execute, part of the Stairs + Jungle + CT set |
+| CT smoke | Smokes off the CT entrance to A, cutting the CT rotation and peek onto site during the execute |
+| Top Stairs smoke | Blocks the elevated stairs angle that overlooks A ramp and Palace (often a CT AWP hold) so you can cross onto A, part of the Stairs + Jungle + CT execute set |
 | Top mid smoke | Safe mid crossing from T spawn without getting picked by window player |
 | B apps smoke | Blocks CT peek into apps during B execute |
 | Market smoke | Covers market window during B execute |
@@ -62,7 +66,7 @@ Learn T-side first. It's more impactful at most rank levels.
 
 ### Learning order
 
-Window → CT → Jungle → Connector → Top mid → B apps → Market → Van
+Window → CT → Jungle → Top Stairs → Connector → Top mid → B apps → Market → Van
 
 ---
 
@@ -285,7 +289,7 @@ Integrated into the main monthly plan in [README.md](../README.md).
 
 | Week | Maps | Focus |
 |---|---|---|
-| Week 1 | Mirage | Full smoke set (8 smokes + 2 flashes) |
+| Week 1 | Mirage | Full smoke set (9 smokes + 2 flashes) |
 | Week 2 | Inferno + Dust2 | Banana control + Xbox |
 | Week 3 | Nuke + Anubis | Vertical utility + mid control |
 | Week 4 | Ancient + Overpass | Mid control + short control |
