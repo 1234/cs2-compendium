@@ -88,7 +88,7 @@ series cards running titles with Reflex (CS2 ships Reflex). On Pascal /
 Turing it remains correct. On Ampere it's inconsistent. Measure per
 driver version.
 
-This is reflected in [windows/README.md § HAGS](../windows/README.md#4-hags--hardware-accelerated-gpu-scheduling).
+This is reflected in [windows/README.md § HAGS](../windows/README.md#4-hags-hardware-accelerated-gpu-scheduling).
 
 ## Tools used
 

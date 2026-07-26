@@ -77,7 +77,7 @@ math does not carry over.
 
 The Compendium's Process Lasso Core-0 advice now carries an explicit
 "8+ P-core SKUs only" qualifier in
-[hardware/README.md § Intel-specific setting](../hardware/README.md#intel-specific-setting--modern-hybrid-scheduling).
+[hardware/README.md § Intel-specific setting](../hardware/README.md#intel-specific-setting-modern-hybrid-scheduling).
 On 13600K / 14600K, leave affinity at default and let Windows 11 24H2
 Thread Director route threads.
 

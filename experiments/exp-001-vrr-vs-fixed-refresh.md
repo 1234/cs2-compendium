@@ -103,7 +103,7 @@ refresh minus a few frames.
 experiment, not validated across multiple panels or workloads. Treat it as
 a starting hypothesis for your own A/B test, not an established threshold.
 
-This caveat is now reflected in [windows/README.md § When VRR inverts](../windows/README.md#when-vrr-inverts--fps-well-below-refresh).
+This caveat is now reflected in [windows/README.md § When VRR inverts](../windows/README.md#when-vrr-inverts-fps-well-below-refresh).
 
 ## Tools used
 
