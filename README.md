@@ -147,7 +147,9 @@ The Look up track is unordered. Sections do not depend on each other. Read which
 CS2 is CPU- and RAM-limited. Not GPU-limited.  
 Most players do not find this out until after they have spent money on the wrong thing.  
 Covers what actually drives performance, what does not, and what to buy if you are
-upgrading specifically for CS2. Includes a full monitor deep-dive.
+upgrading specifically for CS2. Why CS2 rewards L3 cache over clock speed, why the
+memory 1:1 ratio can make the faster kit the slower kit, why storage is irrelevant,
+which GPU class becomes the limit at which resolution, and a full monitor deep-dive.
 
 ### Hardware deep-dives (coming)
 
