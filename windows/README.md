@@ -207,9 +207,23 @@ from 540 Hz + G-Sync + cap 525 to 270 Hz fixed + cap 263).
 ## 6. Fullscreen Optimizations
 
 **Where:** Navigate to CS2.exe → Right-click → Properties → Compatibility tab  
-**Setting:** Check *Disable fullscreen optimizations*
+**Setting:** Check *Disable fullscreen optimizations*. **Leave every other box in
+this tab unchecked.**
 
-Also check: *Run this program as an administrator*
+**Do NOT check *Run this program as an administrator*.** An earlier version of this
+section recommended it. That advice is widespread, cargo-culted, and actively harmful:
+when cs2.exe runs elevated while Steam runs normally, Steam cannot validate the
+elevated process as its own child, and VAC treats the launch as
+*"launched in insecure mode from outside of Steam"*. Result: you are blocked from
+all VAC secure servers (matchmaking and community) until the box is unchecked.
+Confirmed on this compendium's own setup (fresh Windows 11 install, August 2026:
+admin flag on = insecure-mode error, admin flag off = VAC green, with
+*Disable fullscreen optimizations* still checked) and matching the standing advice
+in the Steam community threads on this exact error
+([thread](https://steamcommunity.com/app/730/discussions/0/1520386297690162447),
+[VAC error fix guide](https://steamcommunity.com/sharedfiles/filedetails/?id=3555856424)).
+CS2 does not need elevation for anything. Steam itself should also run non-elevated,
+so both processes stay at the same integrity level.
 
 CS2.exe is typically at:  
 `C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\game\bin\win64\cs2.exe`
