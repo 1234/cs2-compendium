@@ -10,7 +10,7 @@ ten you half-remember.
 - **Yprac** (Steam Workshop): interactive lineup guides on all active duty maps
 - **csnades.gg**: video tutorials for every lineup, filterable by map and type
 - **CS2util.com**: pro-verified lineups with visual markers
-- **[nades.ai](https://nades.ai/)**: free lineups from pro matches, each with a video, filterable by map and utility type
+- **[nades.ai](https://nades.ai/)**: every smoke, flash and molly pros actually threw in the last 3 months, read from pro demos, each with a video and live usage counts by team and player; free
 - **Refrag**: in-game utility and smoke practice modes
 
 ---
